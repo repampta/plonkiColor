@@ -17,7 +17,7 @@ class TabBar: UITabBarController {
         buildConfig(profileVC, title: "Profile", imageName: "btnProfile")
 
         let ratingVC = RatingVC()
-        buildConfig(ratingVC, title: "Info", imageName: "btnInfo")
+        buildConfig(ratingVC, title: "Rating", imageName: "btnInfo")
 
         let homeVC = HomeVC()
         buildConfig(homeVC, title: "Home", imageName: "btnHome")

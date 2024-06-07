@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186516992C1330C100A8A076 /* RatingCell.swift */; };
+		1865169C2C1330C500A8A076 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169B2C1330C500A8A076 /* User.swift */; };
+		1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */; };
+		186516A02C134A0500A8A076 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169F2C134A0500A8A076 /* CircleView.swift */; };
 		18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18972C11E23B00D6019B /* AppDelegate.swift */; };
 		18DF189A2C11E23B00D6019B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18992C11E23B00D6019B /* SceneDelegate.swift */; };
 		18DF18A12C11E23D00D6019B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18A02C11E23D00D6019B /* Assets.xcassets */; };
@@ -34,6 +38,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		186516992C1330C100A8A076 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
+		1865169B2C1330C500A8A076 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRatingOneCell.swift; sourceTree = "<group>"; };
+		1865169F2C134A0500A8A076 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
 		18DF18942C11E23B00D6019B /* plonkiColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = plonkiColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DF18972C11E23B00D6019B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18DF18992C11E23B00D6019B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -192,6 +200,9 @@
 			isa = PBXGroup;
 			children = (
 				18DF18C22C11E71900D6019B /* RatingVC.swift */,
+				186516992C1330C100A8A076 /* RatingCell.swift */,
+				1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */,
+				1865169B2C1330C500A8A076 /* User.swift */,
 				18DF18C42C11E71C00D6019B /* RatingView.swift */,
 			);
 			path = Rating;
@@ -202,6 +213,7 @@
 			children = (
 				18DF18CA2C11E73100D6019B /* BonusVC.swift */,
 				18DF18CC2C11E73700D6019B /* BonusView.swift */,
+				1865169F2C134A0500A8A076 /* CircleView.swift */,
 			);
 			path = Bonus;
 			sourceTree = "<group>";
@@ -302,6 +314,7 @@
 			files = (
 				18DF18CD2C11E73700D6019B /* BonusView.swift in Sources */,
 				18DF18DB2C11F23700D6019B /* Font + Extension.swift in Sources */,
+				1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */,
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
 				18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */,
@@ -313,14 +326,17 @@
 				18DF18D72C11F11100D6019B /* Memory.swift in Sources */,
 				18DF18CB2C11E73100D6019B /* BonusVC.swift in Sources */,
 				18DF18D32C11E76300D6019B /* TabBar.swift in Sources */,
+				1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */,
 				18DF18E02C11F4C700D6019B /* InfoView.swift in Sources */,
 				18DF18D52C11F10900D6019B /* Settings.swift in Sources */,
 				18DF18B52C11E43300D6019B /* LoadingView.swift in Sources */,
 				18DF18C32C11E71900D6019B /* RatingVC.swift in Sources */,
 				18DF18C12C11E71000D6019B /* ProfileView.swift in Sources */,
 				18DF18CF2C11E73D00D6019B /* ChapterVC.swift in Sources */,
+				186516A02C134A0500A8A076 /* CircleView.swift in Sources */,
 				18DF18D92C11F21A00D6019B /* Double.swift in Sources */,
 				18DF189A2C11E23B00D6019B /* SceneDelegate.swift in Sources */,
+				1865169C2C1330C500A8A076 /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

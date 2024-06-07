@@ -20,7 +20,38 @@ class RatingView: UIView {
         return imageView
     }()
 
-  
+    private (set) var contScore: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        return view
+    }()
+    
+    private (set) var scoreLabel: UILabel = {
+        let label = UILabel()
+        label.text = "\(Memory.shared.scoreCoints)"
+        label.textColor = .white
+        label.font = .systemFont(ofSize: 14)
+        return label
+    }()
+    
+    private (set) var titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Rating of the week"
+        label.textColor = .blue
+        label.font = .systemFont(ofSize: 36)
+        return label
+    }()
+    
+    private(set) lazy var ratingTableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.backgroundColor = .clear
+        tableView.showsVerticalScrollIndicator = false
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+        tableView.register(RatingCell.self, forCellReuseIdentifier: RatingCell.reuseId)
+        tableView.register(CustomRatingCell.self, forCellReuseIdentifier: CustomRatingCell.reuseId)
+        tableView.separatorStyle = .none
+        return tableView
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,15 +65,36 @@ class RatingView: UIView {
     
     private func setupUI() {
 
-        [view, bgImage] .forEach(addSubview(_:))
+        [bgImage, contScore, scoreLabel, titleLabel, ratingTableView] .forEach(addSubview(_:))
 
     }
     
     private func setupConstraints() {
         
-        view.snp.makeConstraints { make in
+        bgImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-
+        
+        contScore.snp.makeConstraints { make in
+            make.left.equalToSuperview().offset(10)
+            make.size.equalTo(48)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+        }
+        
+        scoreLabel.snp.makeConstraints { make in
+            make.left.equalTo(contScore.snp.right).offset(10)
+            make.centerY.equalTo(contScore)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(contScore.snp.bottom).offset(20)
+            make.centerX.equalToSuperview()
+        }
+        
+        ratingTableView.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
+            make.left.right.equalToSuperview().inset(24)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+        }
     }
 }
