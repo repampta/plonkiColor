@@ -38,5 +38,5 @@ class LoadingVC: UIViewController {
                     navigationController.modalPresentationStyle = .fullScreen
                     present(navigationController, animated: true)
                     navigationController.setNavigationBarHidden(true, animated: false)
-            }
+        }
     }

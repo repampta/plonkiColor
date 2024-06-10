@@ -11,6 +11,11 @@
 		1865169C2C1330C500A8A076 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169B2C1330C500A8A076 /* User.swift */; };
 		1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */; };
 		186516A02C134A0500A8A076 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169F2C134A0500A8A076 /* CircleView.swift */; };
+		18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADBC2C170CF00023D16D /* HomeCell.swift */; };
+		18A8ADBF2C1725A20023D16D /* ChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADBE2C1725A20023D16D /* ChapterCell.swift */; };
+		18A8ADC22C1736160023D16D /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADC12C1736160023D16D /* GameVC.swift */; };
+		18A8ADC42C17361A0023D16D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADC32C17361A0023D16D /* GameScene.swift */; };
+		18A8ADC62C17369B0023D16D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADC52C17369B0023D16D /* CustomButton.swift */; };
 		18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18972C11E23B00D6019B /* AppDelegate.swift */; };
 		18DF189A2C11E23B00D6019B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18992C11E23B00D6019B /* SceneDelegate.swift */; };
 		18DF18A12C11E23D00D6019B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18DF18A02C11E23D00D6019B /* Assets.xcassets */; };
@@ -42,6 +47,11 @@
 		1865169B2C1330C500A8A076 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRatingOneCell.swift; sourceTree = "<group>"; };
 		1865169F2C134A0500A8A076 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
+		18A8ADBC2C170CF00023D16D /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		18A8ADBE2C1725A20023D16D /* ChapterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCell.swift; sourceTree = "<group>"; };
+		18A8ADC12C1736160023D16D /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
+		18A8ADC32C17361A0023D16D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		18A8ADC52C17369B0023D16D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		18DF18942C11E23B00D6019B /* plonkiColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = plonkiColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18DF18972C11E23B00D6019B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		18DF18992C11E23B00D6019B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +91,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18A8ADC02C17360D0023D16D /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				18A8ADC12C1736160023D16D /* GameVC.swift */,
+				18A8ADC32C17361A0023D16D /* GameScene.swift */,
+				18A8ADC52C17369B0023D16D /* CustomButton.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
 		18DF188B2C11E23B00D6019B = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +170,9 @@
 			isa = PBXGroup;
 			children = (
 				18DF18C62C11E72300D6019B /* HomeVC.swift */,
+				18A8ADBC2C170CF00023D16D /* HomeCell.swift */,
 				18DF18C82C11E72800D6019B /* HomeView.swift */,
+				18A8ADC02C17360D0023D16D /* Game */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -223,6 +245,7 @@
 			children = (
 				18DF18CE2C11E73D00D6019B /* ChapterVC.swift */,
 				18DF18D02C11E74000D6019B /* ChapterView.swift */,
+				18A8ADBE2C1725A20023D16D /* ChapterCell.swift */,
 			);
 			path = Chapter;
 			sourceTree = "<group>";
@@ -315,20 +338,25 @@
 				18DF18CD2C11E73700D6019B /* BonusView.swift in Sources */,
 				18DF18DB2C11F23700D6019B /* Font + Extension.swift in Sources */,
 				1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */,
+				18A8ADC42C17361A0023D16D /* GameScene.swift in Sources */,
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
 				18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */,
+				18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */,
 				18DF18B32C11E42E00D6019B /* LoadingVC.swift in Sources */,
 				18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */,
 				18DF18C92C11E72800D6019B /* HomeView.swift in Sources */,
 				18DF18C72C11E72300D6019B /* HomeVC.swift in Sources */,
 				18DF18C52C11E71C00D6019B /* RatingView.swift in Sources */,
 				18DF18D72C11F11100D6019B /* Memory.swift in Sources */,
+				18A8ADC62C17369B0023D16D /* CustomButton.swift in Sources */,
 				18DF18CB2C11E73100D6019B /* BonusVC.swift in Sources */,
 				18DF18D32C11E76300D6019B /* TabBar.swift in Sources */,
 				1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */,
 				18DF18E02C11F4C700D6019B /* InfoView.swift in Sources */,
 				18DF18D52C11F10900D6019B /* Settings.swift in Sources */,
+				18A8ADC22C1736160023D16D /* GameVC.swift in Sources */,
+				18A8ADBF2C1725A20023D16D /* ChapterCell.swift in Sources */,
 				18DF18B52C11E43300D6019B /* LoadingView.swift in Sources */,
 				18DF18C32C11E71900D6019B /* RatingVC.swift in Sources */,
 				18DF18C12C11E71000D6019B /* ProfileView.swift in Sources */,
