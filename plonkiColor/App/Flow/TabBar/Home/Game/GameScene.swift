@@ -6,6 +6,10 @@ import SnapKit
 import SpriteKit
 import GameplayKit
 
+struct GameBoard: Codable {
+    let boards: [[Int]]
+}
+
 enum GameState {
     case back
     case updateScoreBackEnd
@@ -15,74 +19,207 @@ enum GameState {
 
 class GameScene: SKScene {
     
-    
+    private var gameBoards: GameBoard?
     private var coints: Int = 0
-    private var points: Int = 0
     private var popupActive: Bool = false
-    
-    private var slowModeTimer: Timer?
-    private var startView: SKSpriteNode!
-    private var progressBarBackground: SKSpriteNode!
-    private var progressBarFill: SKSpriteNode!
-    private var cup: SKSpriteNode!
+    private var firstSelectedNode: SKSpriteNode?
+    private var secondSelectedNode: SKSpriteNode?
+    private var winBoard: [[Int]]?
+    private var boardsTwo: [[Int]]?
     
     private var dropButton = CustomSKButton(texture: SKTexture(imageNamed: "playBtn"))
-    private var x2PointBtn = CustomSKButton(texture: SKTexture(imageNamed: "x2PointsTapped"))
-    private var addTimeBtn = CustomSKButton(texture: SKTexture(imageNamed: "addTimeTapped"))
-    private var lightningBtn = CustomSKButton(texture: SKTexture(imageNamed: "lightningTapped"))
     
-    private var countX2Points = SKLabelNode()
-    private var countAddTimeLabel = SKLabelNode()
-    private var countLightningLabel = SKLabelNode()
-    private var pointsLabel = SKLabelNode()
-    private var cointsLabel = SKLabelNode()
-    
-    private var spawnTimer: Timer?
-    private var spawnDuration = 60.0
-    private let playItems = ["imgTrash10", "imgTimeG", "imgPointsG","imgCoinsG", "imgTrashA", "imgTrashJ", "imgTrashK", "imgTrashQ"]
-
-    private var doublePointsActive = false
-    private var hasCollidedWithTrash = false
-    private var collidedWithImgPointsG = false
-    private var collidedWithImgTimeG = false
-    private var usedX2Bonus = false
-    private var usedAddTimeBonus = false
-    private var usedLightningBonus = false
-
     private let storage = Memory.shared
 
     public var resultTransfer: ((GameState) -> Void)?
+
     
     
     override func didMove(to view: SKView) {
-        swipeGesture()
+        loadGameBoards()
+        loadWinBoard()
         addSettingsScene()
         setupGameSubviews()
         setupButtons()
+        
+        guard let boardsOne = gameBoards?.boards else {
+                   print("Failed to load game boards.")
+
+                   return
+               }
+        boardsTwo = boardsOne
+
+               // Допустим, мы хотим загрузить первое игровое поле
+//        let firstBoard = boardsTwo![0]
+               loadBoard(boardsTwo!)
     }
 
     
-    private func swipeGesture() {
-        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeRight.direction = .right
-        view?.addGestureRecognizer(swipeRight)
-
-        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-        swipeLeft.direction = .left
-        view?.addGestureRecognizer(swipeLeft)
-
-    }
     
-    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-        let moveDistance: CGFloat = 50 // Дистанция, на которую будет смещаться объект
-        if gesture.direction == .right {
-            let moveRight = SKAction.moveBy(x: moveDistance, y: 0, duration: 0.1)
-            cup.run(moveRight)
-        } else if gesture.direction == .left {
-            let moveLeft = SKAction.moveBy(x: -moveDistance, y: 0, duration: 0.1)
-            cup.run(moveLeft)
+    private func loadGameBoards() {
+           guard let url = Bundle.main.url(forResource: "gameBoards", withExtension: "json") else {
+               print("JSON file not found.")
+               return
+           }
+           
+           do {
+               let data = try Data(contentsOf: url)
+               gameBoards = try JSONDecoder().decode(GameBoard.self, from: data)
+           } catch {
+               print("Error loading or decoding JSON: \(error)")
+           }
+       }
+       
+    private func loadWinBoard() {
+        guard let url = Bundle.main.url(forResource: "winGame", withExtension: "json") else {
+            print("JSON file not found.")
+            return
+        }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let boards1 = json["boards1"] as? [[[Int]]],
+               let firstBoard = boards1.first {
+                
+                winBoard = firstBoard
+                // Mark:winBoard! - Warning
+                
+                for (rowIndex, row) in winBoard!.enumerated() {
+                    for (colIndex, cell) in row.enumerated() {
+                        print("winBoard ---- [row - \(rowIndex)], [coll - \(colIndex)] - \(cell)")
+                        
+                    }
+                }
+                
+            }
+        } catch {
+            print("Error loading or decoding JSON: \(error)")
         }
     }
+
+    
+    private func loadBoard(_ board: [[Int]]) {
+        let cellSize = CGSize(width: 50, height: 50)
+        let numberOfRows = board.count
+        let numberOfColumns = board[0].count
+        
+        let boardWidth = CGFloat(numberOfColumns) * cellSize.width
+        let boardHeight = CGFloat(numberOfRows) * cellSize.height
+        
+        let startX = (size.width - boardWidth) / 2
+        let startY = (size.height - boardHeight) / 2
+        
+        for (rowIndex, row) in board.enumerated() {
+            for (colIndex, cell) in row.enumerated() {
+//                print("[row - \(rowIndex)], [coll - \(colIndex)] - \(cell)")
+
+                let position = CGPoint(
+                    x: startX + CGFloat(colIndex) * cellSize.width,
+                    y: startY + CGFloat(rowIndex) * cellSize.height
+                )
+                createNode(for: cell, at: position, size: cellSize, row: rowIndex, col: colIndex)
+            }
+        }
+    }
+
+    private func pront() {
+        guard let boards = boardsTwo else {
+                   print("Failed to load game boards.")
+                   return
+               }
+        print("boardsTwo -- ")
+
+        for (rowIndex, row) in boards.enumerated() {
+            for (colIndex, cell) in row.enumerated() {
+                print("[row - \(rowIndex)], [coll - \(colIndex)] - \(cell)")
+                
+            }
+        }
+    }
+//    private func loadBoard(_ board: [[Int]]) {
+//          let cellSize = CGSize(width: 50, height: 50)
+//          let numberOfRows = board.count
+//          let numberOfColumns = board[0].count
+//          
+//          // Вычисляем размеры игрового поля
+//          let boardWidth = CGFloat(numberOfColumns) * cellSize.width
+//          let boardHeight = CGFloat(numberOfRows) * cellSize.height
+//          
+//          // Вычисляем начальную позицию для центровки
+//          let startX = (size.width - boardWidth) / 2
+//          let startY = (size.height - boardHeight) / 2
+//          
+//          for (rowIndex, row) in board.enumerated() {
+//              for (colIndex, cell) in row.enumerated() {
+//                  let position = CGPoint(
+//                      x: startX + CGFloat(colIndex) * cellSize.width,
+//                      y: startY + CGFloat(rowIndex) * cellSize.height
+//                  )
+//                  createNode(for: cell, at: position, size: cellSize)
+//              }
+//          }
+//      }
+    
+    private func createNode(for value: Int, at position: CGPoint, size: CGSize, row: Int, col: Int) {
+        let node: SKSpriteNode
+        
+        switch value {
+        case 0:
+            node = SKSpriteNode(imageNamed: "node_0")
+        case 1:
+            node = SKSpriteNode(imageNamed: "node_1")
+        case 2:
+            node = SKSpriteNode(imageNamed: "node_2")
+        case 3:
+            node = SKSpriteNode(imageNamed: "node_3")
+        case 4:
+            node = SKSpriteNode(color: .blue, size: size)
+        case 5:
+            node = SKSpriteNode(color: .yellow, size: size)
+        case 6:
+            node = SKSpriteNode(color: .purple, size: size)
+        default:
+            node = SKSpriteNode(color: .clear, size: size)
+        }
+        
+        node.position = position
+        node.anchorPoint = CGPoint(x: 0, y: 0)
+        node.name = "draggable"
+        addChild(node)
+    }
+
+      
+//      private func createNode(for value: Int, at position: CGPoint, size: CGSize) {
+//          let node: SKSpriteNode
+//          
+//          switch value {
+//          case 0:
+//              node = SKSpriteNode(imageNamed: "node_0")
+//          case 1:
+//              node = SKSpriteNode(imageNamed: "node_1")
+//          case 2:
+//              node = SKSpriteNode(imageNamed: "node_2")
+//          case 3:
+//              node = SKSpriteNode(imageNamed: "node_3")
+//          case 4:
+//              node = SKSpriteNode(color: .blue, size: size)
+//          case 5:
+//              node = SKSpriteNode(color: .yellow, size: size)
+//          case 6:
+//              node = SKSpriteNode(color: .purple, size: size)
+//
+//          default:
+//              // По умолчанию пустая ячейка
+//              node = SKSpriteNode(color: .clear, size: size)
+//          }
+//          
+//          node.position = position
+//          node.anchorPoint = CGPoint(x: 0, y: 0) // Устанавливаем якорную точку в левый нижний угол
+//          node.name = "draggable"
+//          addChild(node)
+//      }
+      
     
     private func addSettingsScene() {
         self.physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
@@ -94,23 +231,13 @@ class GameScene: SKScene {
     private func setupGameSubviews() {
         setupBackground()
         setupNavigation()
-        setupProgressBar()
     }
     
     func updateCoinsBalance() {
-        pointsLabel.text = String(points)
-        cointsLabel.text = String(coints)
+        
     }
     
     private func setupButtons() {
-        dropButton.normal = UIImage(named: "playBtn")
-        dropButton.highlighted = UIImage(named: "playBtnTapped")
-        x2PointBtn.normal = UIImage(named: "x2PointsBtn")
-        x2PointBtn.highlighted = UIImage(named: "x2PointsTapped")
-        addTimeBtn.normal = UIImage(named: "addTimeBtn")
-        addTimeBtn.highlighted = UIImage(named: "addTimeTapped")
-        lightningBtn.normal = UIImage(named: "lightningBtn")
-        lightningBtn.highlighted = UIImage(named: "lightningTapped")
         
     }
     
@@ -126,141 +253,111 @@ class GameScene: SKScene {
     
     private func setupNavigation() {
         let backBtn = CustomSKButton(texture: SKTexture(imageNamed: "btnBack"))
-        backBtn.size = .init(width: 48, height: 48)
+        backBtn.size = .init(width: 44, height: 44)
         backBtn.anchorPoint = .init(x: 0, y: 1.0)
-        backBtn.position = CGPoint(x: 24.autoSize, y: size.height - 58.autoSize)
+        backBtn.position = CGPoint(x: 24, y: size.height - 58.autoSize)
         backBtn.normal = UIImage(named: "btnBack")
-        backBtn.highlighted = UIImage(named: "btnBackTapped")
         backBtn.zPosition = 50
         backBtn.action = { self.backButtonAction() }
         addChild(backBtn)
         
-        let pointsImgTexture = SKTexture(imageNamed: "pointCont")
-        let pointsImg = SKSpriteNode(texture: pointsImgTexture)
-        pointsImg.size = CGSize(width: 146, height: 76)
-        pointsImg.position = CGPoint(x: backBtn.position.x + backBtn.size.width + 80, y: size.height - 86.autoSize)
-        pointsImg.zPosition = 50
-        addChild(pointsImg)
+        let restartBtn = CustomSKButton(texture: SKTexture(imageNamed: "btnRestart"))
+        restartBtn.size = .init(width: 44, height: 44)
+        restartBtn.anchorPoint = .init(x: 0, y: 1.0)
+        restartBtn.position = CGPoint(x: (size.width / 2) - 24, y: size.height - 58.autoSize)
+        restartBtn.normal = UIImage(named: "btnRestart")
+        restartBtn.zPosition = 50
+        restartBtn.action = { self.backButtonAction() }
+        addChild(restartBtn)
         
-        pointsLabel.fontName = "Unbounded-Bold"
-        pointsLabel.fontSize = 16
-        pointsLabel.fontColor = .white
-        pointsLabel.position = CGPoint(x: 20.autoSize, y: 0)
-        pointsLabel.zPosition = 50
-        pointsImg.addChild(pointsLabel)
-        
-        let countsImgTexture = SKTexture(imageNamed: "cointCont")
-        let countsImg = SKSpriteNode(texture: countsImgTexture)
-        countsImg.size = CGSize(width: 146, height: 76)
-        countsImg.position = CGPoint(x: self.size.width - 146 / 2 - 24, y: size.height - 86.autoSize)
-        countsImg.zPosition = 50
-        addChild(countsImg)
-        
-        cointsLabel.fontName = "Unbounded-Bold"
-        cointsLabel.fontSize = 16
-        cointsLabel.fontColor = .white
-        cointsLabel.position = CGPoint(x: 20.autoSize, y: 0)
-        cointsLabel.zPosition = 50
-        countsImg.addChild(cointsLabel)
-        
-        let shapeWidth = self.size.width / 3
-        let shapeHeight: CGFloat = 114.autoSize
-        
-//        x2PointBtn.size = CGSize(width: shapeWidth, height: shapeHeight)
-//        x2PointBtn.anchorPoint = CGPoint(x: 0, y: 0)
-//        x2PointBtn.position = CGPoint(x: 0, y: 0)
-//        x2PointBtn.zPosition = 32
-//        x2PointBtn.action = {self.dropButtonButtonActionOne() }
-//        addChild(x2PointBtn)
-//        
-//        let cointLabeX2PointslImgTexture = SKTexture(imageNamed: "countLabel")
-//        let labelX2PointsImg = SKSpriteNode(texture: cointLabeX2PointslImgTexture)
-//        labelX2PointsImg.size = CGSize(width: 24.autoSize, height: 24.autoSize)
-//        labelX2PointsImg.position = CGPoint(x: 102.autoSize, y: 56.autoSize)
-//        labelX2PointsImg.zPosition = 33
-//        x2PointBtn.addChild(labelX2PointsImg)
-//        
-//        countX2Points.fontName = "Unbounded-Regular"
-//        countX2Points.text = "\(storage.pointsX2)"
-//        countX2Points.fontSize = 14.autoSize
-//        countX2Points.fontColor = .white
-//        countX2Points.position = CGPoint(x: 102.autoSize, y: 50.autoSize)
-//        countX2Points.zPosition = 34
-//        x2PointBtn.addChild(countX2Points)
-//        
-//        addTimeBtn.size = CGSize(width: shapeWidth, height: shapeHeight)
-//        addTimeBtn.anchorPoint = CGPoint(x: 0, y: 0)
-//        addTimeBtn.position = CGPoint(x: shapeWidth, y: 0)
-//        addTimeBtn.zPosition = 32
-//        addTimeBtn.action = {self.dropButtonButtonActionTwo() }
-//        addChild(addTimeBtn)
-//        
-//        let cointLabelAddTimeImgTexture = SKTexture(imageNamed: "countLabel")
-//        let labelAddTimeImg = SKSpriteNode(texture: cointLabelAddTimeImgTexture)
-//        labelAddTimeImg.size = CGSize(width: 24.autoSize, height: 24.autoSize)
-//        labelAddTimeImg.position = CGPoint(x: 98.autoSize, y: 56.autoSize)
-//        labelAddTimeImg.zPosition = 33
-//        addTimeBtn.addChild(labelAddTimeImg)
-//        
-//        countAddTimeLabel.fontName = "Unbounded-Regular"
-//        countAddTimeLabel.text = "\(storage.addTime)"
-//        countAddTimeLabel.fontSize = 14.autoSize
-//        countAddTimeLabel.fontColor = .white
-//        countAddTimeLabel.position = CGPoint(x: 98.autoSize, y: 50.autoSize)
-//        countAddTimeLabel.zPosition = 34
-//        addTimeBtn.addChild(countAddTimeLabel)
-//        
-//        lightningBtn.size = CGSize(width: shapeWidth, height: shapeHeight)
-//        lightningBtn.anchorPoint = CGPoint(x: 0, y: 0)
-//        lightningBtn.position = CGPoint(x: shapeWidth * 2, y: 0)
-//        lightningBtn.zPosition = 32
-//        lightningBtn.action = {self.dropButtonButtonActionThree() }
-//        addChild(lightningBtn)
-//        
-//        let cointLabelLightningImgTexture = SKTexture(imageNamed: "countLabel")
-//        let labelLightningImg = SKSpriteNode(texture: cointLabelLightningImgTexture)
-//        labelLightningImg.size = CGSize(width: 24.autoSize, height: 24.autoSize)
-//        labelLightningImg.position = CGPoint(x: 96.autoSize, y: 56.autoSize)
-//        labelLightningImg.zPosition = 33
-//        lightningBtn.addChild(labelLightningImg)
-//        
-//        countLightningLabel.fontName = "Unbounded-Regular"
-//        countLightningLabel.text = "\(storage.lightning)"
-//        countLightningLabel.fontSize = 14.autoSize
-//        countLightningLabel.fontColor = .white
-//        countLightningLabel.position = CGPoint(x: 96.autoSize, y: 50.autoSize)
-//        countLightningLabel.zPosition = 34
-//        lightningBtn.addChild(countLightningLabel)
+        let rulesBtn = CustomSKButton(texture: SKTexture(imageNamed: "btnRuls"))
+        rulesBtn.size = .init(width: 44, height: 44)
+        rulesBtn.anchorPoint = .init(x: 0, y: 1.0)
+        rulesBtn.position = CGPoint(x: (size.width / 2) + 112, y: size.height - 58.autoSize)
+        rulesBtn.normal = UIImage(named: "btnRuls")
+        rulesBtn.zPosition = 50
+        rulesBtn.action = { self.backButtonAction() }
+        addChild(rulesBtn)
         
     }
-
-
-    private func setupProgressBar() {
-        let timeImg = SKSpriteNode(imageNamed: "imgTimeG")
-        timeImg.size = CGSize(width: 47, height: 47)
-        if UIScreen.main.bounds.height < 852 {
-              timeImg.position = CGPoint(x: 78, y: size.height - 126)
-          } else {
-              timeImg.position = CGPoint(x: 60, y: size.height - 126)
-          }
-        timeImg.zPosition = 14
-        self.addChild(timeImg)
-        // Фон прогресс-бара
-        progressBarBackground = SKSpriteNode(imageNamed: "imgTimeline")
-        progressBarBackground.size = CGSize(width: 255.autoSize, height: 11)
-        progressBarBackground.position = CGPoint(x: self.size.width / 2, y: size.height - 126)
-        progressBarBackground.zPosition = 13
-        self.addChild(progressBarBackground)
-
-        // Заполнение прогресс-бара
-        progressBarFill = SKSpriteNode(imageNamed: "imgProgress")
-        progressBarFill.size = CGSize(width: 0, height: 13)
-        progressBarFill.anchorPoint = CGPoint(x: 0, y: 0.5)
-        progressBarFill.position = CGPoint(x: progressBarBackground.position.x - progressBarBackground.size.width / 2, y: size.height - 126)
-        progressBarFill.zPosition = 21
-        self.addChild(progressBarFill)
-
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        let touchedNodes = nodes(at: location)
+        
+        for node in touchedNodes {
+            if node.name == "draggable" {
+                if firstSelectedNode == nil {
+                    firstSelectedNode = node as? SKSpriteNode
+                } else {
+                    secondSelectedNode = node as? SKSpriteNode
+                    swapSelectedNodes()
+                    break
+                }
+            }
+        }
     }
+
+    private func swapSelectedNodes() {
+        guard let firstNode = firstSelectedNode, let secondNode = secondSelectedNode else { return }
+
+        // Swap positions
+        let firstPosition = firstNode.position
+        firstNode.position = secondNode.position
+        secondNode.position = firstPosition
+        
+        
+        // Reset selection state
+        firstSelectedNode = nil
+        secondSelectedNode = nil
+        
+        // Check for win condition
+        checkForWin()
+        pront()
+    }
+
+    
+//    private func swapSelectedNodes() {
+//        guard let firstNode = firstSelectedNode, let secondNode = secondSelectedNode else { return }
+//
+//        let firstPosition = firstNode.position
+//        firstNode.position = secondNode.position
+//        secondNode.position = firstPosition
+//        
+//        // Сбросим состояние
+//        firstSelectedNode = nil
+//        secondSelectedNode = nil
+//        checkForWin()
+//    }
+
+
+    private func checkForWin() {
+        guard let winBoard = winBoard else { return }
+        
+        var currentBoard = [[Int]]()
+        
+        // Сканирование текущего состояния игрового поля
+        self.enumerateChildNodes(withName: "draggable") { (node, _) in
+            if let node = node as? SKSpriteNode,
+               let value = node.userData?["value"] as? Int,
+               let row = node.userData?["row"] as? Int,
+               let col = node.userData?["col"] as? Int {
+                if currentBoard.count <= row {
+                    currentBoard.append([Int]())
+                }
+//                currentBoard[row].insert(value, at: col)
+            }
+        }
+        
+        if currentBoard == winBoard {
+            print("Ты победил!")
+        } else {
+            print("Пробуй ещё!")
+        }
+    }
+
+    
 }
 extension GameScene {
     
@@ -389,90 +486,7 @@ extension GameScene {
 
 extension GameScene: SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
-        let bodyA = contact.bodyA
-        let bodyB = contact.bodyB
-
-        if (bodyA.categoryBitMask == 0x1 << 1 && bodyB.categoryBitMask == 0x1 << 2) ||
-           (bodyA.categoryBitMask == 0x1 << 2 && bodyB.categoryBitMask == 0x1 << 1) {
-            let cupBody = bodyA.categoryBitMask == 0x1 << 1 ? bodyA : bodyB
-            let otherBody = cupBody == bodyA ? bodyB : bodyA
-            
-            if let nodeName = otherBody.node?.name {
-                switch nodeName {
-                case "imgPointsG":
-                    collidedWithImgPointsG = true
-                    var pointsToAdd = 1
-                    if doublePointsActive {
-                        pointsToAdd *= 2
-                    }
-                    points += pointsToAdd
-                    pointsLabel.text = "\(points)"
-                    otherBody.node?.removeFromParent()
-                case "imgCoinsG":
-                    coints += 1
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTrash10":
-                    if coints > 0 {
-                            coints -= 1
-                        hasCollidedWithTrash = true
-                        }
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTrashA":
-                    if coints > 0 {
-                            coints -= 1
-                        hasCollidedWithTrash = true
-                        }
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTrashJ":
-                    if coints > 0 {
-                            coints -= 1
-                        hasCollidedWithTrash = true
-                        }
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTrashK":
-                    if coints > 0 {
-                            coints -= 1
-                        hasCollidedWithTrash = true
-                        }
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTrashQ":
-                    if coints > 0 {
-                            coints -= 1
-                        hasCollidedWithTrash = true
-                        }
-                    cointsLabel.text = "\(coints)"
-                    otherBody.node?.removeFromParent()
-                case "imgTimeG":
-                    collidedWithImgTimeG = true
-                    recalculateProgress(additionalTime: 3)
-                    otherBody.node?.removeFromParent()
-                default:
-                    break
-                }
-            }
-
-        }
+        
+        
     }
-
-    func recalculateProgress(additionalTime: TimeInterval) {
-        progressBarFill.removeAllActions()
-
-        let currentProgress = progressBarFill.size.width / progressBarBackground.size.width
-        let currentTime = currentProgress * CGFloat(spawnDuration)
-
-        spawnDuration += additionalTime
-
-        let newRemainingTime = spawnDuration - currentTime
-
-        let newWidth = progressBarBackground.size.width * (currentTime + newRemainingTime) / CGFloat(spawnDuration)
-        let resizeAction = SKAction.resize(toWidth: newWidth, duration: TimeInterval(newRemainingTime))
-        progressBarFill.run(resizeAction)
-    }
-
-   
 }

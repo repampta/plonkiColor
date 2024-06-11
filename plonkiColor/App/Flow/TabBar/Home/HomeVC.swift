@@ -66,6 +66,8 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
     @objc private func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
         print("Button tapped at index \(index)")
+        let vc = GameVC()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     
