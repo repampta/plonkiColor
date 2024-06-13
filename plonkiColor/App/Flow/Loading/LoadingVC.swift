@@ -7,7 +7,6 @@ import UIKit
 import SnapKit
 
 class LoadingVC: UIViewController {
-    
 
     var contentView: LoadingView {
         view as? LoadingView ?? LoadingView()

@@ -125,20 +125,20 @@ class HomeView: UIView {
     }
     
     func updatePageNumbers(count: Int, currentPage: Int) {
-            pageNumberStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
-            for i in 1...count {
-                let label = UILabel()
-                label.text = "\(i)"
-                if i == currentPage {
-                    label.textColor = .green
-                    label.font = .boldSystemFont(ofSize: 24)
-                } else {
-                    label.textColor = .white
-                    label.font = .systemFont(ofSize: 12)
-                }
-                pageNumberStackView.addArrangedSubview(label)
+        pageNumberStackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
+        for i in 0..<count {
+            let label = UILabel()
+            label.text = "\(i + 1)"
+            if i == currentPage {
+                label.textColor = .green
+                label.font = .boldSystemFont(ofSize: 24)
+            } else {
+                label.textColor = .white
+                label.font = .systemFont(ofSize: 12)
             }
+            pageNumberStackView.addArrangedSubview(label)
         }
+    }
         
         func updatePageNumber(currentPage: Int) {
             for (index, view) in pageNumberStackView.arrangedSubviews.enumerated() {

@@ -48,20 +48,15 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var selectedColors: [UIColor] = []
         switch indexPath.row {
         case 0:
-            selectedColors = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
+            UserDefaults.currentChapter = .colorHarmony
         case 1:
-            selectedColors = [.orange, .blue, .red, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
-        case 2:
-            selectedColors = [.green, .blue, .red, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
+            UserDefaults.currentChapter = .gradientChallenges
         default:
-            selectedColors = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
+            return
         }
-        let homeVC = HomeVC()
-        homeVC.setColors(colors: selectedColors)
-        navigationController?.pushViewController(homeVC, animated: true)
+        self.tabBarController?.selectedIndex = 2
     }
 }
 

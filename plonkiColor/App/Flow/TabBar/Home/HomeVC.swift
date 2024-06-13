@@ -4,6 +4,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import SwiftUI
 
 struct ColorData {
     static let colorsForFirstItem: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
@@ -14,7 +15,10 @@ struct ColorData {
 
 class HomeVC: UIViewController {
     
-    private var levels: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
+    private var levelColors: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
+    
+    private var currentChapter = UserDefaults.currentChapter
+    private var levels: [LevelProtocol] = UserDefaults.currentChapter.levels
     
     var contentView: HomeView {
         view as? HomeView ?? HomeView()
@@ -28,7 +32,16 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         configureCollection()
         tappedButtons()
-        contentView.updatePageNumbers(count: levels.count, currentPage: 1)
+        contentView.updatePageNumbers(count: levels.count, currentPage: 0)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.currentChapter != currentChapter {
+            self.currentChapter = UserDefaults.currentChapter
+            self.levels = UserDefaults.currentChapter.levels
+            contentView.updatePageNumbers(count: levels.count, currentPage: 0)
+            contentView.collectionView.reloadData()
+        }
     }
     
     private func configureCollection() {
@@ -41,10 +54,9 @@ class HomeVC: UIViewController {
     }
     
     func setColors(colors: [UIColor]) {
-           self.levels = colors
+           self.levelColors = colors
         contentView.collectionView.reloadData()
-        contentView.updatePageNumbers(count: levels.count, currentPage: 1)
-
+        contentView.updatePageNumbers(count: levelColors.count, currentPage: 1)
        }
 }
 
@@ -55,7 +67,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseId, for: indexPath) as! HomeCell
-        cell.contentView.backgroundColor = levels[indexPath.item]
+        cell.contentView.backgroundColor = levelColors[indexPath.item]
         
         cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         cell.button.tag = indexPath.item
@@ -66,8 +78,13 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
     @objc private func buttonTapped(_ sender: UIButton) {
         let index = sender.tag
         print("Button tapped at index \(index)")
-        let vc = GameVC()
-        navigationController?.pushViewController(vc, animated: true)
+        
+        if levels.indices.contains(index) {
+            let level = levels[index]
+            guard level.isOpen else { return }
+            let controller = UIHostingController(rootView: LevelView(levelType: level))
+            navigationController?.pushViewController(controller, animated: true)
+        }
     }
     
     

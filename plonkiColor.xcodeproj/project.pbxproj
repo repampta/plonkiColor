@@ -42,6 +42,16 @@
 		18DF18DB2C11F23700D6019B /* Font + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DA2C11F23700D6019B /* Font + Extension.swift */; };
 		18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DD2C11F4C000D6019B /* InfoVC.swift */; };
 		18DF18E02C11F4C700D6019B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DF2C11F4C700D6019B /* InfoView.swift */; };
+		A5D217832C1B22DC00B247AC /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2177D2C1B22DC00B247AC /* Chapter.swift */; };
+		A5D217852C1B22DC00B247AC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2177F2C1B22DC00B247AC /* Level.swift */; };
+		A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */; };
+		A5D217872C1B22DC00B247AC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217822C1B22DC00B247AC /* Ball.swift */; };
+		A5D2178B2C1B264900B247AC /* LevelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217892C1B264900B247AC /* LevelProtocol.swift */; };
+		A5D2178E2C1B277400B247AC /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2178C2C1B277400B247AC /* Extension+Color.swift */; };
+		A5D217902C1B27F300B247AC /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */; };
+		A5D217982C1B2B0100B247AC /* LevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217972C1B2B0100B247AC /* LevelViewModel.swift */; };
+		A5D2179A2C1B2B2A00B247AC /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217992C1B2B2A00B247AC /* LevelView.swift */; };
+		A5D2179C2C1B2B3F00B247AC /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2179B2C1B2B3F00B247AC /* BallView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +91,16 @@
 		18DF18DA2C11F23700D6019B /* Font + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extension.swift"; sourceTree = "<group>"; };
 		18DF18DD2C11F4C000D6019B /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		18DF18DF2C11F4C700D6019B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		A5D2177D2C1B22DC00B247AC /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
+		A5D2177F2C1B22DC00B247AC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
+		A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHarmonyLevel.swift; sourceTree = "<group>"; };
+		A5D217822C1B22DC00B247AC /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		A5D217892C1B264900B247AC /* LevelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelProtocol.swift; sourceTree = "<group>"; };
+		A5D2178C2C1B277400B247AC /* Extension+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
+		A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
+		A5D217972C1B2B0100B247AC /* LevelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelViewModel.swift; sourceTree = "<group>"; };
+		A5D217992C1B2B2A00B247AC /* LevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
+		A5D2179B2C1B2B3F00B247AC /* BallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +118,11 @@
 		18A8ADC02C17360D0023D16D /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				A5D2178A2C1B264900B247AC /* Protocols */,
+				A5D2179F2C1B50D400B247AC /* Models */,
+				A5D217992C1B2B2A00B247AC /* LevelView.swift */,
+				A5D2179B2C1B2B3F00B247AC /* BallView.swift */,
+				A5D217972C1B2B0100B247AC /* LevelViewModel.swift */,
 				18A8ADC12C1736160023D16D /* GameVC.swift */,
 				18A8ADC32C17361A0023D16D /* GameScene.swift */,
 				18A8ADC52C17369B0023D16D /* CustomButton.swift */,
@@ -147,6 +172,7 @@
 		18DF18AC2C11E24600D6019B /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
+				A5D2178D2C1B277400B247AC /* Extensions */,
 				18DF18B92C11E64400D6019B /* Helpers */,
 				18DF18B82C11E63A00D6019B /* UIFont */,
 				18DF18A02C11E23D00D6019B /* Assets.xcassets */,
@@ -249,6 +275,7 @@
 		18DF18BD2C11E6E300D6019B /* Chapter */ = {
 			isa = PBXGroup;
 			children = (
+				A5D2177C2C1B22BD00B247AC /* Models */,
 				18DF18CE2C11E73D00D6019B /* ChapterVC.swift */,
 				18DF18D02C11E74000D6019B /* ChapterView.swift */,
 				18A8ADBE2C1725A20023D16D /* ChapterCell.swift */,
@@ -263,6 +290,41 @@
 				18DF18DF2C11F4C700D6019B /* InfoView.swift */,
 			);
 			path = Info;
+			sourceTree = "<group>";
+		};
+		A5D2177C2C1B22BD00B247AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5D2177D2C1B22DC00B247AC /* Chapter.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A5D2178A2C1B264900B247AC /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				A5D217892C1B264900B247AC /* LevelProtocol.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		A5D2178D2C1B277400B247AC /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A5D2178C2C1B277400B247AC /* Extension+Color.swift */,
+				A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		A5D2179F2C1B50D400B247AC /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A5D217822C1B22DC00B247AC /* Ball.swift */,
+				A5D2177F2C1B22DC00B247AC /* Level.swift */,
+				A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -344,8 +406,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18DF18CD2C11E73700D6019B /* BonusView.swift in Sources */,
+				A5D217902C1B27F300B247AC /* Extension+UserDefaults.swift in Sources */,
 				18DF18DB2C11F23700D6019B /* Font + Extension.swift in Sources */,
 				1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */,
+				A5D2178E2C1B277400B247AC /* Extension+Color.swift in Sources */,
 				18A8ADC42C17361A0023D16D /* GameScene.swift in Sources */,
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
@@ -354,22 +418,30 @@
 				18DF18B32C11E42E00D6019B /* LoadingVC.swift in Sources */,
 				18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */,
 				18DF18C92C11E72800D6019B /* HomeView.swift in Sources */,
+				A5D217872C1B22DC00B247AC /* Ball.swift in Sources */,
+				A5D217852C1B22DC00B247AC /* Level.swift in Sources */,
 				18DF18C72C11E72300D6019B /* HomeVC.swift in Sources */,
+				A5D2179C2C1B2B3F00B247AC /* BallView.swift in Sources */,
 				18DF18C52C11E71C00D6019B /* RatingView.swift in Sources */,
+				A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */,
 				18DF18D72C11F11100D6019B /* Memory.swift in Sources */,
 				18A8ADC62C17369B0023D16D /* CustomButton.swift in Sources */,
 				18DF18CB2C11E73100D6019B /* BonusVC.swift in Sources */,
 				18DF18D32C11E76300D6019B /* TabBar.swift in Sources */,
+				A5D217832C1B22DC00B247AC /* Chapter.swift in Sources */,
 				1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */,
 				18DF18E02C11F4C700D6019B /* InfoView.swift in Sources */,
+				A5D217982C1B2B0100B247AC /* LevelViewModel.swift in Sources */,
 				18DF18D52C11F10900D6019B /* Settings.swift in Sources */,
 				18A8ADC22C1736160023D16D /* GameVC.swift in Sources */,
 				18A8ADBF2C1725A20023D16D /* ChapterCell.swift in Sources */,
 				18DF18B52C11E43300D6019B /* LoadingView.swift in Sources */,
 				18DF18C32C11E71900D6019B /* RatingVC.swift in Sources */,
+				A5D2179A2C1B2B2A00B247AC /* LevelView.swift in Sources */,
 				18DF18C12C11E71000D6019B /* ProfileView.swift in Sources */,
 				18DF18CF2C11E73D00D6019B /* ChapterVC.swift in Sources */,
 				186516A02C134A0500A8A076 /* CircleView.swift in Sources */,
+				A5D2178B2C1B264900B247AC /* LevelProtocol.swift in Sources */,
 				18DF18D92C11F21A00D6019B /* Double.swift in Sources */,
 				18DF189A2C11E23B00D6019B /* SceneDelegate.swift in Sources */,
 				1865169C2C1330C500A8A076 /* User.swift in Sources */,
