@@ -18,7 +18,8 @@ class HomeVC: UIViewController {
     private var levelColors: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
     
     private var currentChapter = UserDefaults.currentChapter
-    private var levels: [LevelProtocol] = UserDefaults.currentChapter.levels
+    private var currentLevelIndex = Chapter.currentLevel.id
+    private var levels: [Level] = UserDefaults.currentChapter.levels
     
     var contentView: HomeView {
         view as? HomeView ?? HomeView()
@@ -32,22 +33,36 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         configureCollection()
         tappedButtons()
-        contentView.updatePageNumbers(count: levels.count, currentPage: 0)
+        contentView.updatePageNumbers(
+            count: levels.count,
+            currentPage: currentLevelIndex
+        )
     }
     
     override func viewWillAppear(_ animated: Bool) {
         if UserDefaults.currentChapter != currentChapter {
             self.currentChapter = UserDefaults.currentChapter
             self.levels = UserDefaults.currentChapter.levels
-            contentView.updatePageNumbers(count: levels.count, currentPage: 0)
+            self.currentLevelIndex = Chapter.currentLevel.id
             contentView.collectionView.reloadData()
         }
+        
+        /// Added the scroll to the index of the current level
+        scrollCollectionToTheCurrentLevel()
+        contentView.updatePageNumbers(count: levels.count, currentPage: currentLevelIndex)
     }
     
     private func configureCollection() {
         contentView.collectionView.dataSource = self
         contentView.collectionView.delegate = self
         contentView.collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseId)
+    }
+    
+    private func scrollCollectionToTheCurrentLevel() {
+        DispatchQueue.main.async {
+            let indexPath = IndexPath(item: self.currentLevelIndex, section: 0)
+            self.contentView.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        }
     }
     
     private func tappedButtons() {
@@ -81,8 +96,10 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
         
         if levels.indices.contains(index) {
             let level = levels[index]
+            /// Here we can check if the level is open
             guard level.isOpen else { return }
-            let controller = UIHostingController(rootView: LevelView(levelType: level))
+            let levelViewModel = LevelViewModel(level: level)
+            let controller = UIHostingController(rootView: LevelView(viewModel: levelViewModel))
             navigationController?.pushViewController(controller, animated: true)
         }
     }

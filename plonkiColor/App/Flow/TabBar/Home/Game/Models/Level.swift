@@ -1,21 +1,41 @@
 import Foundation
 
-struct Level: LevelProtocol {
+struct Level {
     let id: Int
     var balls: [Ball] = []
     var colors: [String]
     let fixedPositions: [[Int]]
     let columns: Int
     let rows: Int
-    var isOpen: Bool
+    var isFinished = false
     
-    init(level: LevelProtocol) {
-        self.id = level.id
+    var isOpen: Bool {
+        get {
+            let currentChapter = UserDefaults.currentChapter
+            return (UserDefaults.chaptersAndLevels[currentChapter.rawValue] ?? []).contains(id)
+        }
+    }
+    
+    init(level: LevelTypeProtocol, id: Int) {
+        self.id = id
         self.colors = level.colors
         self.fixedPositions = level.fixedPositions
         self.columns = level.columns
         self.rows = level.rows
-        self.isOpen = level.isOpen
+    }
+    
+    init(
+        id: Int,
+        colors: [String],
+        fixedPositions: [[Int]],
+        columns: Int,
+        rows: Int
+    ) {
+        self.id = id
+        self.colors = colors
+        self.fixedPositions = fixedPositions
+        self.columns = columns
+        self.rows = rows
     }
     
     mutating func generateBalls() {
@@ -44,8 +64,9 @@ struct Level: LevelProtocol {
     }
     
     mutating func changeBalls(first: Int, second: Int) {
-        balls.swapAt(first, second)
-        checkForCompletion()
+        if !balls[first].isFixed && !balls[second].isFixed {
+            balls.swapAt(first, second)
+        }
     }
     
     mutating func checkForCompletion() {
@@ -53,6 +74,6 @@ struct Level: LevelProtocol {
             balls[index].color == colors[index]
         }
         
-        if allSatisty { print("Game is finished") }
+        if allSatisty { isFinished = true }
     }
 }

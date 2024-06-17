@@ -6,15 +6,7 @@ enum ColorHarmonyLevel: Int {
 
 extension ColorHarmonyLevel: CaseIterable, Codable { }
 
-extension ColorHarmonyLevel: LevelProtocol {
-    var id: Int { return self.rawValue }
-    
-    var isOpen: Bool {
-        get {
-            let currentChapter = UserDefaults.currentChapter
-            return (UserDefaults.chaptersAndLevels[currentChapter.rawValue] ?? []).contains(id)
-        }
-    }
+extension ColorHarmonyLevel: LevelTypeProtocol {
     
     var colors: [String] {
         switch self {

@@ -46,12 +46,23 @@
 		A5D217852C1B22DC00B247AC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2177F2C1B22DC00B247AC /* Level.swift */; };
 		A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */; };
 		A5D217872C1B22DC00B247AC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217822C1B22DC00B247AC /* Ball.swift */; };
-		A5D2178B2C1B264900B247AC /* LevelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217892C1B264900B247AC /* LevelProtocol.swift */; };
+		A5D2178B2C1B264900B247AC /* LevelTypeProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217892C1B264900B247AC /* LevelTypeProtocol.swift */; };
 		A5D2178E2C1B277400B247AC /* Extension+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2178C2C1B277400B247AC /* Extension+Color.swift */; };
 		A5D217902C1B27F300B247AC /* Extension+UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */; };
 		A5D217982C1B2B0100B247AC /* LevelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217972C1B2B0100B247AC /* LevelViewModel.swift */; };
 		A5D2179A2C1B2B2A00B247AC /* LevelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217992C1B2B2A00B247AC /* LevelView.swift */; };
 		A5D2179C2C1B2B3F00B247AC /* BallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2179B2C1B2B3F00B247AC /* BallView.swift */; };
+		A5D217A12C1C33C900B247AC /* SaveAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217A02C1C33C900B247AC /* SaveAreaInsets.swift */; };
+		A5D217A62C1C3AF700B247AC /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217A32C1C3AF700B247AC /* ModalView.swift */; };
+		A5D217A72C1C3AF700B247AC /* ModalViewStateKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217A42C1C3AF700B247AC /* ModalViewStateKey.swift */; };
+		A5D217A92C1C44DE00B247AC /* SecondaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217A82C1C44DE00B247AC /* SecondaryButtonStyle.swift */; };
+		A5D217AB2C1C47B600B247AC /* CustomInnerShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217AA2C1C47B500B247AC /* CustomInnerShadow.swift */; };
+		A5D217AD2C1C49A000B247AC /* GameWinModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217AC2C1C49A000B247AC /* GameWinModalView.swift */; };
+		A5D217AF2C1C4A4800B247AC /* KleeOne-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5D217AE2C1C4A4800B247AC /* KleeOne-SemiBold.ttf */; };
+		A5D217B12C1C4A4F00B247AC /* KleeOne-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5D217B02C1C4A4F00B247AC /* KleeOne-Regular.ttf */; };
+		A5D217B32C1C521700B247AC /* Chivo-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5D217B22C1C521700B247AC /* Chivo-Regular.ttf */; };
+		A5D217B52C1C659C00B247AC /* GradientChallenges.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217B42C1C659C00B247AC /* GradientChallenges.swift */; };
+		A5D217B72C1CD01D00B247AC /* DragDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217B62C1CD01D00B247AC /* DragDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,12 +106,23 @@
 		A5D2177F2C1B22DC00B247AC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHarmonyLevel.swift; sourceTree = "<group>"; };
 		A5D217822C1B22DC00B247AC /* Ball.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
-		A5D217892C1B264900B247AC /* LevelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelProtocol.swift; sourceTree = "<group>"; };
+		A5D217892C1B264900B247AC /* LevelTypeProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTypeProtocol.swift; sourceTree = "<group>"; };
 		A5D2178C2C1B277400B247AC /* Extension+Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Extension+Color.swift"; sourceTree = "<group>"; };
 		A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UserDefaults.swift"; sourceTree = "<group>"; };
 		A5D217972C1B2B0100B247AC /* LevelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelViewModel.swift; sourceTree = "<group>"; };
 		A5D217992C1B2B2A00B247AC /* LevelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelView.swift; sourceTree = "<group>"; };
 		A5D2179B2C1B2B3F00B247AC /* BallView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BallView.swift; sourceTree = "<group>"; };
+		A5D217A02C1C33C900B247AC /* SaveAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveAreaInsets.swift; sourceTree = "<group>"; };
+		A5D217A32C1C3AF700B247AC /* ModalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		A5D217A42C1C3AF700B247AC /* ModalViewStateKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalViewStateKey.swift; sourceTree = "<group>"; };
+		A5D217A82C1C44DE00B247AC /* SecondaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryButtonStyle.swift; sourceTree = "<group>"; };
+		A5D217AA2C1C47B500B247AC /* CustomInnerShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInnerShadow.swift; sourceTree = "<group>"; };
+		A5D217AC2C1C49A000B247AC /* GameWinModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWinModalView.swift; sourceTree = "<group>"; };
+		A5D217AE2C1C4A4800B247AC /* KleeOne-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KleeOne-SemiBold.ttf"; sourceTree = "<group>"; };
+		A5D217B02C1C4A4F00B247AC /* KleeOne-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "KleeOne-Regular.ttf"; sourceTree = "<group>"; };
+		A5D217B22C1C521700B247AC /* Chivo-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chivo-Regular.ttf"; sourceTree = "<group>"; };
+		A5D217B42C1C659C00B247AC /* GradientChallenges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientChallenges.swift; sourceTree = "<group>"; };
+		A5D217B62C1CD01D00B247AC /* DragDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +143,7 @@
 				A5D2178A2C1B264900B247AC /* Protocols */,
 				A5D2179F2C1B50D400B247AC /* Models */,
 				A5D217992C1B2B2A00B247AC /* LevelView.swift */,
+				A5D217AC2C1C49A000B247AC /* GameWinModalView.swift */,
 				A5D2179B2C1B2B3F00B247AC /* BallView.swift */,
 				A5D217972C1B2B0100B247AC /* LevelViewModel.swift */,
 				18A8ADC12C1736160023D16D /* GameVC.swift */,
@@ -172,6 +195,7 @@
 		18DF18AC2C11E24600D6019B /* Resourse */ = {
 			isa = PBXGroup;
 			children = (
+				A5D217A22C1C3A7700B247AC /* CustomComponents */,
 				A5D2178D2C1B277400B247AC /* Extensions */,
 				18DF18B92C11E64400D6019B /* Helpers */,
 				18DF18B82C11E63A00D6019B /* UIFont */,
@@ -225,6 +249,9 @@
 		18DF18B82C11E63A00D6019B /* UIFont */ = {
 			isa = PBXGroup;
 			children = (
+				A5D217B02C1C4A4F00B247AC /* KleeOne-Regular.ttf */,
+				A5D217AE2C1C4A4800B247AC /* KleeOne-SemiBold.ttf */,
+				A5D217B22C1C521700B247AC /* Chivo-Regular.ttf */,
 			);
 			path = UIFont;
 			sourceTree = "<group>";
@@ -236,6 +263,8 @@
 				18DF18D62C11F11100D6019B /* Memory.swift */,
 				18DF18D82C11F21A00D6019B /* Double.swift */,
 				18DF18DA2C11F23700D6019B /* Font + Extension.swift */,
+				A5D217A02C1C33C900B247AC /* SaveAreaInsets.swift */,
+				A5D217B62C1CD01D00B247AC /* DragDelegate.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -303,7 +332,7 @@
 		A5D2178A2C1B264900B247AC /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				A5D217892C1B264900B247AC /* LevelProtocol.swift */,
+				A5D217892C1B264900B247AC /* LevelTypeProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -323,8 +352,28 @@
 				A5D217822C1B22DC00B247AC /* Ball.swift */,
 				A5D2177F2C1B22DC00B247AC /* Level.swift */,
 				A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */,
+				A5D217B42C1C659C00B247AC /* GradientChallenges.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		A5D217A22C1C3A7700B247AC /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A5D217A52C1C3AF700B247AC /* ModalView */,
+				A5D217A82C1C44DE00B247AC /* SecondaryButtonStyle.swift */,
+				A5D217AA2C1C47B500B247AC /* CustomInnerShadow.swift */,
+			);
+			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		A5D217A52C1C3AF700B247AC /* ModalView */ = {
+			isa = PBXGroup;
+			children = (
+				A5D217A32C1C3AF700B247AC /* ModalView.swift */,
+				A5D217A42C1C3AF700B247AC /* ModalViewStateKey.swift */,
+			);
+			path = ModalView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -391,8 +440,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D217AF2C1C4A4800B247AC /* KleeOne-SemiBold.ttf in Resources */,
 				18DF18A12C11E23D00D6019B /* Assets.xcassets in Resources */,
 				187141F82C187C4000C08D27 /* gameBoards.json in Resources */,
+				A5D217B12C1C4A4F00B247AC /* KleeOne-Regular.ttf in Resources */,
+				A5D217B32C1C521700B247AC /* Chivo-Regular.ttf in Resources */,
 				18DF18A42C11E23D00D6019B /* Base in Resources */,
 				187141FA2C1880CB00C08D27 /* winGame.json in Resources */,
 			);
@@ -411,10 +463,12 @@
 				1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */,
 				A5D2178E2C1B277400B247AC /* Extension+Color.swift in Sources */,
 				18A8ADC42C17361A0023D16D /* GameScene.swift in Sources */,
+				A5D217B72C1CD01D00B247AC /* DragDelegate.swift in Sources */,
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
 				18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */,
 				18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */,
+				A5D217AB2C1C47B600B247AC /* CustomInnerShadow.swift in Sources */,
 				18DF18B32C11E42E00D6019B /* LoadingVC.swift in Sources */,
 				18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */,
 				18DF18C92C11E72800D6019B /* HomeView.swift in Sources */,
@@ -423,9 +477,12 @@
 				18DF18C72C11E72300D6019B /* HomeVC.swift in Sources */,
 				A5D2179C2C1B2B3F00B247AC /* BallView.swift in Sources */,
 				18DF18C52C11E71C00D6019B /* RatingView.swift in Sources */,
+				A5D217AD2C1C49A000B247AC /* GameWinModalView.swift in Sources */,
+				A5D217A62C1C3AF700B247AC /* ModalView.swift in Sources */,
 				A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */,
 				18DF18D72C11F11100D6019B /* Memory.swift in Sources */,
 				18A8ADC62C17369B0023D16D /* CustomButton.swift in Sources */,
+				A5D217A92C1C44DE00B247AC /* SecondaryButtonStyle.swift in Sources */,
 				18DF18CB2C11E73100D6019B /* BonusVC.swift in Sources */,
 				18DF18D32C11E76300D6019B /* TabBar.swift in Sources */,
 				A5D217832C1B22DC00B247AC /* Chapter.swift in Sources */,
@@ -437,11 +494,14 @@
 				18A8ADBF2C1725A20023D16D /* ChapterCell.swift in Sources */,
 				18DF18B52C11E43300D6019B /* LoadingView.swift in Sources */,
 				18DF18C32C11E71900D6019B /* RatingVC.swift in Sources */,
+				A5D217A12C1C33C900B247AC /* SaveAreaInsets.swift in Sources */,
 				A5D2179A2C1B2B2A00B247AC /* LevelView.swift in Sources */,
 				18DF18C12C11E71000D6019B /* ProfileView.swift in Sources */,
 				18DF18CF2C11E73D00D6019B /* ChapterVC.swift in Sources */,
 				186516A02C134A0500A8A076 /* CircleView.swift in Sources */,
-				A5D2178B2C1B264900B247AC /* LevelProtocol.swift in Sources */,
+				A5D217B52C1C659C00B247AC /* GradientChallenges.swift in Sources */,
+				A5D217A72C1C3AF700B247AC /* ModalViewStateKey.swift in Sources */,
+				A5D2178B2C1B264900B247AC /* LevelTypeProtocol.swift in Sources */,
 				18DF18D92C11F21A00D6019B /* Double.swift in Sources */,
 				18DF189A2C11E23B00D6019B /* SceneDelegate.swift in Sources */,
 				1865169C2C1330C500A8A076 /* User.swift in Sources */,
@@ -588,6 +648,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L8S4BY4WJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
@@ -596,6 +657,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -619,6 +681,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6L8S4BY4WJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
@@ -627,6 +690,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -31,11 +31,10 @@ class LoadingVC: UIViewController {
 }
     
     func loadHomeVC() {
-         
-                    let vc = TabBar()
-                    let navigationController = UINavigationController(rootViewController: vc)
-                    navigationController.modalPresentationStyle = .fullScreen
-                    present(navigationController, animated: true)
-                    navigationController.setNavigationBarHidden(true, animated: false)
-        }
+        let vc = TabBar()
+        let navigationController = UINavigationController(rootViewController: vc)
+        navigationController.modalPresentationStyle = .fullScreen
+        present(navigationController, animated: true)
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
+}
