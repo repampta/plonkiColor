@@ -2,66 +2,50 @@
 import UIKit
 
 class TabBar: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UITabBar.appearance().unselectedItemTintColor = .white.withAlphaComponent(0.5)
-        UITabBar.appearance().tintColor = .white
         
-        // Убираем фоновый цвет, чтобы градиент был виден
-        UITabBar.appearance().backgroundColor = .clear
-        tabBar.backgroundImage = UIImage()
-        tabBar.shadowImage = UIImage()
+        UITabBar.appearance().backgroundColor = .cDarkPurple
 
-        addGradientToTabBar()
+        let profile = ProfileVC()
+        buildConfig(profile, imageName: "btnProfile", selectedImageName: "btnProfileTapped")
+        
+        let rating = RatingVC()
+        buildConfig(rating, imageName: "btnRating", selectedImageName: "btnRatingTapped")
 
-        let profileVC = ProfileVC()
-        buildConfig(profileVC, title: "Profile", imageName: "btnProfile")
+        let home = HomeVC()
+        buildConfig(home, imageName: "btnHome", selectedImageName: "btnHomeTapped")
 
-        let ratingVC = RatingVC()
-        buildConfig(ratingVC, title: "Rating", imageName: "btnInfo")
+        let bonus = BonusVC()
+        buildConfig(bonus, imageName: "btnBonus", selectedImageName: "btnBonusTapped")
 
-        let homeVC = HomeVC()
-        buildConfig(homeVC, title: "Home", imageName: "btnHome")
+        let chapter = ChapterVC()
+        buildConfig(chapter, imageName: "btnChapter", selectedImageName: "btnChapterTapped")
 
-        let bonusVC = BonusVC()
-        buildConfig(bonusVC, title: "Bonus", imageName: "btnBonus")
+        viewControllers = [profile, rating, home, bonus, chapter]
+        selectedViewController = home
 
-        let chapterVC = ChapterVC()
-        buildConfig(chapterVC, title: "Chapter", imageName: "btnHome")
-
-        viewControllers = [profileVC, ratingVC, homeVC, bonusVC, chapterVC]
-        selectedViewController = homeVC
     }
-
-    private func buildConfig(_ vc: UIViewController, title: String, imageName: String) {
-        vc.tabBarItem.title = title
-        vc.tabBarItem.image = UIImage(named: imageName)
-        vc.tabBarItem.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 0)
-    }
-
-    private func addGradientToTabBar() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = tabBar.bounds
-        gradientLayer.colors = [UIColor.cGradOne.cgColor, UIColor.cGradTwo.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.5)
-
-        if let image = getImageFrom(gradientLayer) {
-            let gradientImageView = UIImageView(image: image)
-            gradientImageView.frame = tabBar.bounds
-            gradientImageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            tabBar.insertSubview(gradientImageView, at: 0)
+    
+    private func buildConfig(_ vc: UIViewController, imageName: String, selectedImageName: String) {
+        let originalImage = UIImage(named: imageName)?.withRenderingMode(.alwaysOriginal)
+        let selectedImage = UIImage(named: selectedImageName)?.withRenderingMode(.alwaysOriginal)
+        
+        let screenHeight = UIScreen.main.bounds.height
+        let imageInset: UIEdgeInsets
+        
+        if screenHeight < 852 {
+            imageInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        } else {
+            imageInset = UIEdgeInsets(top: 0, left: 0, bottom: -14, right: -2)
         }
-    }
 
-    private func getImageFrom(_ gradientLayer: CAGradientLayer) -> UIImage? {
-        UIGraphicsBeginImageContext(gradientLayer.frame.size)
-        guard let context = UIGraphicsGetCurrentContext() else { return nil }
-        gradientLayer.render(in: context)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
+        originalImage?.imageFlippedForRightToLeftLayoutDirection()
+        selectedImage?.imageFlippedForRightToLeftLayoutDirection()
+        vc.tabBarItem.imageInsets = imageInset
+        
+        vc.tabBarItem.image = originalImage
+        vc.tabBarItem.selectedImage = selectedImage
     }
 }

@@ -9,14 +9,13 @@ import UIKit
 extension UIFont {
     
     enum CustomFonts: String {
-        case inriaSans = "InriaSans"
-        case gruppo = "Gruppo"
+        case kleeOne = "KleeOne"
+        case chivo = "Chivo"
     }
     
     enum CustomFontStyle: String {
         case regular = "-Regular"
-        case light = "-Light"
-        case bold = "-Bold"
+        case semiBold = "-SemiBold"
     }
     
     static func customFont(
@@ -37,13 +36,13 @@ extension UIFont {
 }
 
 extension UILabel {
-    static func createLabel(withText text: String, font: UIFont, textColor: UIColor, paragraphSpacing: CGFloat, lineHeightMultiple: CGFloat, textAlignment: NSTextAlignment = .center) -> UILabel {
+    static func createLabel(withText text: String, font: UIFont, textColor: UIColor, lineHeightMultiple: CGFloat, textAlignment: NSTextAlignment = .center) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = textAlignment
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = paragraphSpacing
+        paragraphStyle.lineBreakMode = .byWordWrapping
         paragraphStyle.lineHeightMultiple = lineHeightMultiple
         
         let attributes: [NSAttributedString.Key: Any] = [

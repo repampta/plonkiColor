@@ -53,7 +53,14 @@ class Memory {
         }
     }
     
- 
+    var firstLaunchDate: Date? {
+        get {
+            return defaults.object(forKey: "firstLaunchDate") as? Date
+        }
+        set {
+            defaults.set(newValue, forKey: "firstLaunchDate")
+        }
+    }
 }
 
 extension UserDefaults {

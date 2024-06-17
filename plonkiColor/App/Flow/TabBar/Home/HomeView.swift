@@ -16,7 +16,7 @@ class HomeView: UIView {
     
     private (set) var bgImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .bgHome
+        imageView.image = .bgClassic
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

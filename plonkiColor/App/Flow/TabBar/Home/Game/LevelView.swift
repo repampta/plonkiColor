@@ -91,7 +91,7 @@ struct LevelView: View {
         .padding(.bottom, 24)
         .padding(.top, safeArea.top)
         .background {
-            Color.darkPurple
+            Color.cDarkPurple
                 .shadow(color: .black.opacity(0.6), radius: 12, y: 4)
         }
     }

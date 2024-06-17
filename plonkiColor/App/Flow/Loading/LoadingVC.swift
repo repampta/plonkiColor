@@ -22,15 +22,30 @@ class LoadingVC: UIViewController {
     }
     
     func animateProgressBar() {
-        UIView.animate(withDuration: 1.5) {
-            self.contentView.progressView.setProgress(1.0, animated: true)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                  self.loadHomeVC()
-    }
-}
+          UIView.animate(withDuration: 1.5, animations: {
+              self.contentView.progressView.setProgress(1.0, animated: true)
+          }, completion: { _ in
+              self.contentView.updateGradientMask()
+              self.contentView.animateGradient()
+          })
+          
+          DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+              self.loadHomeVC()
+          }
+      }
+//    func animateProgressBar() {
+//        UIView.animate(withDuration: 1.5) {
+//            self.contentView.progressView.setProgress(1.0, animated: true)
+//        }
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//                  self.loadHomeVC()
+//    }
+//}
     
     func loadHomeVC() {
+        if Memory.shared.firstLaunchDate == nil {
+                 Memory.shared.firstLaunchDate = Date()
+             }
         let vc = TabBar()
         let navigationController = UINavigationController(rootViewController: vc)
         navigationController.modalPresentationStyle = .fullScreen
