@@ -8,10 +8,10 @@ import SnapKit
 class BonusView: UIView {
     
     private var storage = Memory.shared
-    let segmentValues = [0, 1, 2, 3, 4, 5, 6, 7]
+    let segmentValues = [0, 1, 2, 3, 4, 5]
     private  var corners: [CircleView] = []
-    private  let count = 8
-    private let colors: [UIColor] = [.red, .white, .yellow, .cyan, .brown, .green, .systemPink, .purple]
+    private  let count = 6
+    private let colors: [UIColor] = [.clear, .clear, .clear, .clear, .clear, .clear]
     
     private(set) var bonusView: UIView = {
         let view = UIView()
@@ -20,7 +20,7 @@ class BonusView: UIView {
     
     private (set) var bgImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .bgHome
+        imageView.image = .bgClassic
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -35,20 +35,14 @@ class BonusView: UIView {
     }()
     
     private var titleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = "daily bonus".uppercased()
-        label.font = .systemFont(ofSize: 36)
-        label.textAlignment = .center
+        let label = UILabel.createLabel(withText: "Daily bonus", font: .customFont(font: .kleeOne, style: .semiBold, size: 36), textColor: .cGradOne, lineHeightMultiple: 0.83)
         return label
     }()
     
     private var subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = "Turn the wheel to receive your daily bonus!"
-        label.font = .systemFont(ofSize: 16)
+        let label = UILabel.createLabel(withText: "Turn the wheel to receive\nyour daily bonus!", font: .customFont(font: .chivo, style: .regular, size: 18), textColor: .cLight, lineHeightMultiple: 1)
         label.textAlignment = .center
+        label.numberOfLines = 0
         return label
     }()
     
@@ -60,14 +54,14 @@ class BonusView: UIView {
 
     private(set) lazy var centerBonusImg: UIImageView = {
         let image = UIImageView()
-        image.image = .centerBonusImg
+        image.image = .imgPointer
         return image
     }()
 
 
     private(set) lazy var bonzaImg: UIImageView = {
         let image = UIImageView()
-        image.image = .circleBonzaImg
+        image.image = .imgFortuneWheel
         return image
     }()
     
@@ -79,8 +73,7 @@ class BonusView: UIView {
     
     private(set) var btnGetBonus: UIButton = {
         let btn = UIButton()
-        btn.setImage(.btnGetBonus, for: .normal)
-        btn.setImage(.tappedGetBonus, for: .highlighted)
+        btn.configureButton(withTitle: "get bonus".uppercased(), font: .customFont(font: .kleeOne, style: .semiBold, size: 24), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped)
         return btn
     }()
     
@@ -92,40 +85,32 @@ class BonusView: UIView {
     
     private (set) var timerBgImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .bgHome
+        imageView.image = .bgClassic
         imageView.clipsToBounds = true
         return imageView
-    }()
-
-  
-    private(set) lazy var timerContainerStack: UIStackView = {
-    let stackView = UIStackView()
-    stackView.axis = .horizontal
-    stackView.alignment = .center
-    stackView.spacing = 0
-    return stackView
     }()
     
     private (set) var timerImg: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .timerImg
+        imageView.image = .imgTime
         imageView.clipsToBounds = true
         return imageView
     }()
     
     private (set) var timerTitleLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white
-        label.text = "Time to next bonus"
-        label.font = .systemFont(ofSize: 36)
-        label.textAlignment = .center
+        let label = UILabel.createLabel(withText: "Daily bonus", font: .customFont(font: .kleeOne, style: .semiBold, size: 36), textColor: .cGradOne, lineHeightMultiple: 0.83)
+        return label
+    }()
+    
+    private (set) var timerSubTitleLabel: UILabel = {
+        let label = UILabel.createLabel(withText: "The bonus will be available through", font: .customFont(font: .chivo, style: .regular, size: 16), textColor: .cLight, lineHeightMultiple: 1)
         return label
     }()
     
     private (set) var timerCountLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 24)
+        label.textColor = .cGradOne
+        label.font = .customFont(font: .chivo, style: .black, size: 24)
         label.textAlignment = .center
         return label
     }()
@@ -149,15 +134,15 @@ class BonusView: UIView {
         bonusView.addSubview(subTitleLabel)
         bonusView.addSubview(btnGetBonus)
         bonusView.addSubview(circleContainer)
-        bonusView.addSubview(selectImageView)
+//        bonusView.addSubview(selectImageView)
         bonusView.addSubview(centerBonusImg)
         circleContainer.addSubview(bonzaImg)
 
         addSubview(timerView)
         timerView.addSubview(timerBgImage)
-        timerView.addSubview(timerContainerStack)
         timerView.addSubview(timerImg)
         timerView.addSubview(timerTitleLabel)
+        timerView.addSubview(timerSubTitleLabel)
         timerView.addSubview(timerCountLabel)
 
     }
@@ -177,42 +162,37 @@ class BonusView: UIView {
             make.top.equalTo(safeAreaLayoutGuide.snp.top)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(containerStack.snp.bottom).offset(32)
-        }
-        
-        subTitleLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom)
-        }
-        
         circleContainer.snp.makeConstraints { make in
-            make.width.equalTo(400.autoSize)
-            make.height.equalTo(400.autoSize)
+            make.width.equalTo(977.autoSize)
+            make.height.equalTo(977.autoSize)
             make.centerX.equalToSuperview()
-            make.top.equalTo(subTitleLabel.snp.bottom).offset(24)
+            make.centerY.equalTo(safeAreaLayoutGuide.snp.top).offset(80)
         }
         
         centerBonusImg.snp.makeConstraints { make in
-            make.center.equalTo(bonzaImg)
-            make.size.equalTo(164.autoSize)
+            make.centerX.equalTo(bonzaImg)
+            make.centerY.equalTo(bonzaImg).offset(40)
+            make.height.equalTo(158)
+            make.width.equalTo(84)
         }
         
         bonzaImg.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
 
-        selectImageView.snp.makeConstraints { (make) in
-            make.top.equalTo(bonzaImg.snp.top).offset(12)
+        titleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.width.equalTo(40.autoSize)
-            make.height.equalTo(60.autoSize)
+            make.top.equalTo(circleContainer.snp.bottom).offset(-84)
+        }
+        
+        subTitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.bottom).offset(20)
         }
         
         btnGetBonus.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(48)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-40)
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(subTitleLabel.snp.bottom).offset(20)
         }
         
         timerView.snp.makeConstraints { make in
@@ -223,24 +203,24 @@ class BonusView: UIView {
             make.edges.equalToSuperview()
         }
         
-        timerContainerStack.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.top.equalTo(safeAreaLayoutGuide.snp.top)
-        }
-        
         timerImg.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(timerContainerStack.snp.bottom).offset(40)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
         }
         
         timerTitleLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(timerImg.snp.bottom).offset(60)
+            make.top.equalTo(timerImg.snp.bottom).offset(24)
+        }
+        
+        timerSubTitleLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(timerTitleLabel.snp.bottom).offset(24)
         }
         
         timerCountLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.top.equalTo(timerTitleLabel.snp.bottom)
+            make.top.equalTo(timerSubTitleLabel.snp.bottom).offset(24)
         }
         
     }

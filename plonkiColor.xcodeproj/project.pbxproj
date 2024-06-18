@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		183C3B1C2C21810800A4CFDB /* Chivo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 183C3B1B2C21810800A4CFDB /* Chivo-Black.ttf */; };
 		1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186516992C1330C100A8A076 /* RatingCell.swift */; };
 		1865169C2C1330C500A8A076 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169B2C1330C500A8A076 /* User.swift */; };
 		1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */; };
@@ -66,6 +67,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		183C3B1B2C21810800A4CFDB /* Chivo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chivo-Black.ttf"; sourceTree = "<group>"; };
 		186516992C1330C100A8A076 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
 		1865169B2C1330C500A8A076 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRatingOneCell.swift; sourceTree = "<group>"; };
@@ -250,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				A5D217B02C1C4A4F00B247AC /* KleeOne-Regular.ttf */,
+				183C3B1B2C21810800A4CFDB /* Chivo-Black.ttf */,
 				A5D217AE2C1C4A4800B247AC /* KleeOne-SemiBold.ttf */,
 				A5D217B22C1C521700B247AC /* Chivo-Regular.ttf */,
 			);
@@ -446,6 +449,7 @@
 				A5D217B12C1C4A4F00B247AC /* KleeOne-Regular.ttf in Resources */,
 				A5D217B32C1C521700B247AC /* Chivo-Regular.ttf in Resources */,
 				18DF18A42C11E23D00D6019B /* Base in Resources */,
+				183C3B1C2C21810800A4CFDB /* Chivo-Black.ttf in Resources */,
 				187141FA2C1880CB00C08D27 /* winGame.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -651,13 +655,14 @@
 				DEVELOPMENT_TEAM = 6L8S4BY4WJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ball Color";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app uses photo storage access";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -684,13 +689,14 @@
 				DEVELOPMENT_TEAM = 6L8S4BY4WJ;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ball Color";
 				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app uses photo storage access";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

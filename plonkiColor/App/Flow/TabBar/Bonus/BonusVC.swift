@@ -43,28 +43,24 @@ class BonusVC: UIViewController {
    
     private func spinCircle(completion: (() -> Void)? = nil) {
         contentView.btnGetBonus.isEnabled = false
-        let sectorAngles: [CGFloat] = [22, 67, 112, 157, 202, 247, 292, 337]
+        let sectorAngles: [CGFloat] = [0, 60, 120, 180, 240, 300]
 
         let randomSectorAngle = sectorAngles.randomElement() ?? 360
         
         let randomRotation = randomSectorAngle * .pi / 180.0
         
         switch randomSectorAngle {
-        case 22:
+        case 0:
             scoreCounts = contentView.segmentValues[1]
-        case 67:
+        case 60:
             scoreCounts = contentView.segmentValues[0]
-        case 112:
-            scoreCounts = contentView.segmentValues[7]
-        case 157:
-            scoreCounts = contentView.segmentValues[6]
-        case 202:
+        case 120:
             scoreCounts = contentView.segmentValues[5]
-        case 247:
+        case 180:
             scoreCounts = contentView.segmentValues[4]
-        case 292:
+        case 240:
             scoreCounts = contentView.segmentValues[3]
-        case 337:
+        case 300:
             scoreCounts = contentView.segmentValues[2]
         default:
             break
@@ -84,7 +80,7 @@ class BonusVC: UIViewController {
                 self.contentView.btnGetBonus.isEnabled = true
                 self.showResultView()
                 completion?()
-//                self.storage.lastBonusDate = Date()
+                self.storage.lastBonusDate = Date()
             }
         }
         contentView.circleContainer.layer.add(rotationAnimation, forKey: "rotationAnimation")
@@ -98,106 +94,90 @@ class BonusVC: UIViewController {
         switch scoreCounts {
         case contentView.segmentValues[0]:
             print("Bonus scorePoints 01 - red")
+            presentPrizeView(coint: "100")
+            Memory.shared.scoreCoints += 100
             
         case contentView.segmentValues[1]:
             print("Bonus scorePoints 02 - white")
+            presentPrizeView(coint: "500")
+            Memory.shared.scoreCoints += 500
 
         case contentView.segmentValues[2]:
             print("Bonus scorePoints 03 -yellow")
+            presentPrizeView(coint: "300")
+            Memory.shared.scoreCoints += 300
 
         case contentView.segmentValues[3]:
             print("Bonus scorePoints 04 - cyan")
-
+            presentPrizeView(coint: "200")
+            Memory.shared.scoreCoints += 200
 
         case contentView.segmentValues[4]:
             print("Bonus scorePoints 05 - brown")
-
+            presentPrizeView(coint: "6000")
+            Memory.shared.scoreCoints += 6000
 
         case contentView.segmentValues[5]:
             print("Bonus scorePoints 06 -green")
-
-
-        case contentView.segmentValues[6]:
-            print("Bonus scorePoints 07 - systemPink")
-
-
-        case contentView.segmentValues[7]:
-            print("Bonus scorePoints 08  - purple")
-
+            presentPrizeView(coint: "400")
+            Memory.shared.scoreCoints += 400
 
         default:
             break
         }
     }
     
-//    private func presentPrizeView(coint: String, image: UIImage) {
-//        if fullScreenView == nil {
-//            fullScreenView = UIView(frame: self.view.bounds)
-//            fullScreenView!.backgroundColor = .black.withAlphaComponent(0.8)
-//            fullScreenView!.alpha = 0
-//        
-//        let imageView = UIImageView(image: .containerModalImg)
-//        imageView.contentMode = .scaleAspectFit
-//            fullScreenView!.addSubview(imageView)
-//        
-//        let titleLabel = UILabel()
-//        titleLabel.text = "congratilations!".uppercased()
-//        titleLabel.font = .customFont(font: .mitr, style: .semiBold, size: .h3)
-//        titleLabel.textColor = .white
-//        titleLabel.numberOfLines = 0
-//        titleLabel.textAlignment = .center
-//        imageView.addSubview(titleLabel)
-//        
-//        let imageBonusView = UIImageView(image: image)
-//        imageBonusView.contentMode = .scaleAspectFit
-//        imageView.addSubview(imageBonusView)
-//        
-//        let countLabel = UILabel()
-//        countLabel.text = coint
-//        countLabel.font = .customFont(font: .mitr, style: .semiBold, size: .h3)
-//        countLabel.textColor = .white
-//        countLabel.numberOfLines = 0
-//        countLabel.textAlignment = .center
-//        imageView.addSubview(countLabel)
-//        
-//        let backButton = UIButton()
-//        backButton.setImage(.btnThanks, for: .normal)
-//        backButton.setImage(.tappedThanks, for: .highlighted)
-//        backButton.addTarget(self, action: #selector(tappedCloseBonus), for: .touchUpInside)
-//            fullScreenView!.addSubview(backButton)
-//
-//        imageView.snp.makeConstraints { make in
-//                make.centerX.equalToSuperview()
-//                make.centerY.equalToSuperview().offset(-40)
-//            }
-//        
-//        titleLabel.snp.makeConstraints { make in
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(imageView.snp.top).offset(40)
-//            }
-//        
-//        imageBonusView.snp.makeConstraints { make in
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(titleLabel.snp.bottom).offset(28)
-//                make.size.equalTo(160)
-//            }
-//        
-//        countLabel.snp.makeConstraints { make in
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(imageBonusView.snp.bottom)
-//            }
-//        
-//        backButton.snp.makeConstraints { make in
-//                make.centerX.equalToSuperview()
-//                make.top.equalTo(countLabel.snp.bottom).offset(36)
-//            }
-//
-//        self.view.addSubview(fullScreenView!)
-//        }
-//    UIView.animate(withDuration: 0.5, animations: {
-//        self.fullScreenView!.alpha = 1
-//    })
-//    }
+    private func presentPrizeView(coint: String) {
+        if fullScreenView == nil {
+            fullScreenView = UIView(frame: self.view.bounds)
+            fullScreenView!.backgroundColor = .black.withAlphaComponent(0.8)
+            fullScreenView!.alpha = 0
+        
+        let imageView = UIImageView(image: .imgBonusBG)
+        imageView.contentMode = .scaleAspectFit
+            fullScreenView!.addSubview(imageView)
+        
+            let titleLabel = UILabel.createLabel(withText: "Congratulations!", font: .customFont(font: .kleeOne, style: .semiBold, size: 36), textColor: .cGradOne, lineHeightMultiple: 0.83)
+        titleLabel.numberOfLines = 0
+        titleLabel.textAlignment = .center
+        imageView.addSubview(titleLabel)
+     
+            let countLabel = UILabel.createLabel(withText: "You Win +\(coint) points", font: .customFont(font: .chivo, style: .regular, size: 18), textColor: .cLight, lineHeightMultiple: 1)
+        countLabel.numberOfLines = 0
+        countLabel.textAlignment = .center
+        imageView.addSubview(countLabel)
+        
+        let backButton = UIButton()
+            backButton.configureButton(withTitle: "Thanks".uppercased(), font: .customFont(font: .kleeOne, style: .semiBold, size: 24), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped, kern: 4.8)
+        backButton.addTarget(self, action: #selector(tappedCloseBonus), for: .touchUpInside)
+            fullScreenView!.addSubview(backButton)
+
+        imageView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+            }
+        
+        titleLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imageView.snp.top).offset(80)
+            }
+            
+        backButton.snp.makeConstraints { make in
+                make.bottom.equalTo(imageView.snp.bottom).offset(-100)
+                make.left.right.equalTo(imageView).inset(76)
+            }
+            
+        countLabel.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+            make.bottom.equalTo(backButton.snp.top).offset(-24)
+            }
+        
+        self.view.addSubview(fullScreenView!)
+        }
+    UIView.animate(withDuration: 0.5, animations: {
+        self.fullScreenView!.alpha = 1
+    })
+    }
     
     @objc func tappedCloseBonus() {
         UIView.animate(withDuration: 0.5, animations: {

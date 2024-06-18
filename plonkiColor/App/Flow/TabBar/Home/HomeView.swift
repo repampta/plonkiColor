@@ -8,12 +8,6 @@ import SnapKit
 
 class HomeView: UIView {
     
-    private (set) var view: UIView = {
-        let view = UIImageView()
-        view.backgroundColor = .green
-        return view
-    }()
-    
     private (set) var bgImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .bgClassic
@@ -21,25 +15,22 @@ class HomeView: UIView {
         return imageView
     }()
 
-    private (set) var contScore: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        return view
+    private (set) var contScore: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .imgCoint
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     
     private (set) var scoreLabel: UILabel = {
-        let label = UILabel()
-        label.text = "\(Memory.shared.scoreCoints)"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
+        let label = UILabel.createLabel(withText: "\(Memory.shared.scoreCoints)", font: .customFont(font: .chivo, style: .black, size: 24), textColor: .cGradOne, lineHeightMultiple: 1)
         return label
     }()
     
     private (set) var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Chapter Name"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 36)
+        let label = UILabel.createLabel(withText: "Chapter", font: .customFont(font: .kleeOne, style: .semiBold, size: 36), textColor: .cGradOne, lineHeightMultiple: 0.83)
+        label.numberOfLines = 0
+        label.textAlignment = .center
         return label
     }()
   
@@ -54,8 +45,8 @@ class HomeView: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.alignment = .center
-        stackView.distribution = .fillEqually
-        stackView.spacing = 8
+        stackView.distribution = .fill
+        stackView.spacing = 16
         return stackView
     }()
     
@@ -83,12 +74,12 @@ class HomeView: UIView {
 
         contScore.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
-            make.size.equalTo(48)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.size.equalTo(60)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
         }
         
         scoreLabel.snp.makeConstraints { make in
-            make.left.equalTo(contScore.snp.right).offset(10)
+            make.left.equalTo(contScore.snp.right)
             make.centerY.equalTo(contScore)
         }
         
@@ -113,12 +104,13 @@ class HomeView: UIView {
         let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
             let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 40, bottom: 0, trailing: 40)
+            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+            
             let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
             let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPaging
+            section.orthogonalScrollingBehavior = .groupPagingCentered
             return section
         }
         return layout
@@ -130,11 +122,11 @@ class HomeView: UIView {
             let label = UILabel()
             label.text = "\(i + 1)"
             if i == currentPage {
-                label.textColor = .green
-                label.font = .boldSystemFont(ofSize: 24)
+                label.textColor = .cGradOne
+                label.font = .customFont(font: .chivo, style: .black, size: 54)
             } else {
-                label.textColor = .white
-                label.font = .systemFont(ofSize: 12)
+                label.textColor = .cLight.withAlphaComponent(0.4)
+                label.font = .customFont(font: .chivo, style: .black, size: 24)
             }
             pageNumberStackView.addArrangedSubview(label)
         }
@@ -144,11 +136,11 @@ class HomeView: UIView {
             for (index, view) in pageNumberStackView.arrangedSubviews.enumerated() {
                 guard let label = view as? UILabel else { continue }
                 if index + 1 == currentPage {
-                    label.textColor = .green
-                    label.font = .boldSystemFont(ofSize: 24)
+                    label.textColor = .cGradOne
+                    label.font = .customFont(font: .chivo, style: .black, size: 54)
                 } else {
-                    label.textColor = .white
-                    label.font = .systemFont(ofSize: 12)
+                    label.textColor = .cLight.withAlphaComponent(0.4)
+                    label.font = .customFont(font: .chivo, style: .black, size: 24)
                 }
             }
         }

@@ -14,34 +14,26 @@ class ChapterView: UIView {
         return imageView
     }()
 
-    private (set) var contScore: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
-        return view
+    private (set) var contScore: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .imgCoint
+        imageView.contentMode = .scaleAspectFill
+        return imageView
     }()
     
     private (set) var scoreLabel: UILabel = {
-        let label = UILabel()
-        label.text = "\(Memory.shared.scoreCoints)"
-        label.textColor = .white
-        label.font = .systemFont(ofSize: 14)
+        let label = UILabel.createLabel(withText: "\(Memory.shared.scoreCoints)", font: .customFont(font: .chivo, style: .black, size: 24), textColor: .cGradOne, lineHeightMultiple: 1)
         return label
     }()
 
     private (set) var titleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Chapter"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 36)
+        let label = UILabel.createLabel(withText: "Chapter", font: .customFont(font: .kleeOne, style: .semiBold, size: 36), textColor: .cGradOne, lineHeightMultiple: 0.83)
         return label
     }()
     
     
     private (set) var subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Of course, here's a list of 10 chapters for\nyour poinko-ball game:"
-        label.textColor = .white
-        label.font = UIFont.systemFont(ofSize: 16)
+        let label = UILabel.createLabel(withText: "Of course, here's a list of 10 chapters for\nyour poinko-ball game:", font: .customFont(font: .chivo, style: .regular, size: 18), textColor: .cLight, lineHeightMultiple: 1)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -49,7 +41,7 @@ class ChapterView: UIView {
     
     private(set) lazy var chapterTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
-        tableView.backgroundColor = .yellow
+        tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
         tableView.separatorStyle = .none
         return tableView
@@ -79,12 +71,12 @@ class ChapterView: UIView {
         
         contScore.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
-            make.size.equalTo(48)
-            make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.size.equalTo(60)
+            make.top.equalTo(safeAreaLayoutGuide.snp.top)
         }
         
         scoreLabel.snp.makeConstraints { make in
-            make.left.equalTo(contScore.snp.right).offset(10)
+            make.left.equalTo(contScore.snp.right)
             make.centerY.equalTo(contScore)
         }
         

@@ -13,23 +13,35 @@ class ChapterCell: UITableViewCell {
     
     private(set) lazy var tittleLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 16)
+        label.font = .customFont(font: .kleeOne, style: .semiBold, size: 28)
+        label.textColor = .cLight
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
     
+    
+    private(set) lazy var imgCompleted: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = .imgChapterCompleted
+        imageView.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        imageView.layer.shadowOpacity = 1
+        imageView.layer.shadowRadius = 12
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     private(set) lazy var chapterImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.layer.cornerRadius = 8
-        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 20
+        imageView.clipsToBounds = false
         return imageView
     }()
     
     private(set) lazy var conteiner: UIView = {
         let view = UIView()
-        view.clipsToBounds = true
+//        view.clipsToBounds = true
         return view
     }()
 
@@ -48,11 +60,12 @@ class ChapterCell: UITableViewCell {
     
         func setupUI() {
             contentView.addSubview(conteiner)
-            contentView.backgroundColor = .red
-            contentView.layer.cornerRadius = 8
+            contentView.backgroundColor = .clear
+            contentView.layer.cornerRadius = 20
+            contentView.layer.masksToBounds = false
             backgroundColor = .clear
             selectionStyle = .none
-            [tittleLabel,chapterImage].forEach(conteiner.addSubview(_:))
+            [chapterImage, tittleLabel, imgCompleted].forEach(conteiner.addSubview(_:))
             
         }
         
@@ -64,14 +77,16 @@ class ChapterCell: UITableViewCell {
             }
             
             chapterImage.snp.makeConstraints { make in
-                make.left.right.top.equalToSuperview()
-                make.height.equalTo(120)
+                make.edges.equalToSuperview()
             }
             
             tittleLabel.snp.makeConstraints { make in
-                make.top.equalTo(chapterImage.snp.bottom).offset(12)
-                make.left.right.bottom.equalToSuperview()
-                make.height.equalTo(18)
+                make.center.equalToSuperview()
+            }
+            
+            imgCompleted.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalTo(chapterImage.snp.top).offset(15)
             }
         }
         

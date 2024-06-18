@@ -16,7 +16,9 @@ struct ColorData {
 class HomeVC: UIViewController {
     
     private var levelColors: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
-    
+    private var chapterImagesOne: [UIImage] = [.imgLevelOne, .imgLevelTwo, .imgLevelThree, .imgLevelFour, .imgLevelFive, .imgLevelSix, .imgLevelSeven, .imgLevelEight, .imgLevelNine, .imgLevelTen]
+    private var chapterImagesTwo: [UIImage] = [.imgGradLevelOne, .imgGradLevelTwo, .imgGradLevelThree, .imgGradLevelFour, .imgGradLevelFive, .imgGradLevelSix, .imgGradLevelSeven, .imgGradLevelEight, .imgGradLevelNine, .imgGradLevelTen]
+
     private var currentChapter = UserDefaults.currentChapter
     private var currentLevelIndex = Chapter.currentLevel.id
     private var levels: [Level] = UserDefaults.currentChapter.levels
@@ -50,6 +52,16 @@ class HomeVC: UIViewController {
         /// Added the scroll to the index of the current level
         scrollCollectionToTheCurrentLevel()
         contentView.updatePageNumbers(count: levels.count, currentPage: currentLevelIndex)
+        updateLabel()
+    }
+    
+    
+    private func updateLabel() {
+        if currentChapter == .colorHarmony {
+            contentView.titleLabel.text = "Chapter\n\"Color Harmony\""
+        } else if currentChapter == .gradientChallenges {
+            contentView.titleLabel.text = "Chapter\n\"Gradient Challenges\""
+        }
     }
     
     private func configureCollection() {
@@ -82,8 +94,12 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseId, for: indexPath) as! HomeCell
-        cell.contentView.backgroundColor = levelColors[indexPath.item]
         
+        if currentChapter == .colorHarmony {
+                 cell.imageViewLevels.image = chapterImagesOne[indexPath.item]
+             } else if currentChapter == .gradientChallenges {
+                 cell.imageViewLevels.image = chapterImagesTwo[indexPath.item]
+             }
         cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         cell.button.tag = indexPath.item
         
@@ -109,6 +125,19 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
           guard let visibleIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
           let pageIndex = visibleIndexPath.item + 1
           print("didEndDisplaying - Current page index: \(pageIndex)")
+          
+          if levels.indices.contains(visibleIndexPath.item) {
+              let level = levels[visibleIndexPath.item]
+              if let visibleCell = collectionView.cellForItem(at: visibleIndexPath) as? HomeCell {
+                  if level.isOpen {
+                      visibleCell.button.setBackgroundImage(UIImage(named: "btnActivity"), for: .normal)
+                      visibleCell.button.isEnabled = true
+                  } else {
+                      visibleCell.button.setBackgroundImage(UIImage(named: "btnLocked"), for: .normal)
+                      visibleCell.button.isEnabled = false
+                  }
+              }
+          }
           contentView.updatePageNumber(currentPage: pageIndex)
       }
 
