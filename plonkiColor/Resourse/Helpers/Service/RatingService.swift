@@ -19,7 +19,7 @@ class RatingService {
     
     private let urlString = "https://ball-color.br-soft.online/api/leaderboard"
 
-    func fetchData(successCompletion: @escaping([ModelRating]) -> Void, errorCompletion: @escaping (Error) -> Void) {
+    func fetchData(successCompletion: @escaping([User]) -> Void, errorCompletion: @escaping (Error) -> Void) {
 
         guard let url = URL(string: urlString) else {
             print("Неверный URL")
@@ -53,7 +53,7 @@ class RatingService {
             
             do {
                 let decoder = JSONDecoder()
-                let ratingModel = try decoder.decode([ModelRating].self, from: data)
+                let ratingModel = try decoder.decode([User].self, from: data)
                 DispatchQueue.main.async {
                     successCompletion(ratingModel)
                     print("\(ratingModel)")

@@ -7,7 +7,7 @@ import SnapKit
 
 class RatingVC: UIViewController {
     
-    var users = [ModelRating]()
+    var users = [User]()
     let getService = RatingService.shared
 
     
@@ -28,7 +28,7 @@ class RatingVC: UIViewController {
     
     func sorterScoreUsers() {
         users.sort {
-            $1.score < $0.score
+            $1.balance ?? 0 < $0.balance ?? 0
         }
     }
     
@@ -53,89 +53,36 @@ class RatingVC: UIViewController {
     }
 }
 
-//extension RatingVC: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return users.count
-//    }
-//    
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == 0 {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: CustomRatingCell.reuseId, for: indexPath)
-//            
-//            guard let customCell = cell as? CustomRatingCell else {
-//                return cell
-//            }
-//            
-//            customCell.customImageView1.image = .imgUserOne
-//            customCell.firstLabel1.text = "3000"
-//            customCell.secondLabel1.text = "Adam"
-//            
-//            customCell.customImageView2.image = .imgUserTwo
-//            customCell.firstLabel2.text = "2500"
-//            customCell.secondLabel2.text = "Trisha"
-//            
-//            customCell.customImageView3.image = .imgUserThree
-//            customCell.firstLabel3.text = "2000"
-//            customCell.secondLabel3.text = "Demos"
-//            
-//            return customCell
-//        } else {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: RatingCell.reuseId, for: indexPath)
-//            
-//            guard let ratingCell = cell as? RatingCell else {
-//                return cell
-//            }
-//            
-//            let index = indexPath.row
-//            let number = index + 1
-//            let user = users[index]
-//
-//            setupDefaultCell(ratingCell: ratingCell, number: number, user: user)
-//            
-//            return ratingCell
-//        }
-//    }
-//    
-//    private func setupDefaultCell(ratingCell: RatingCell, number: Int, user: ModelRating) {
-//        ratingCell.numberLabel.text = "\(number)"
-//        ratingCell.scoreLabel.text = "\(user.score)"
-//        ratingCell.nameLabel.text = user.name == nil || user.name == "" ? "USER# \(user.id ?? 0)" : user.name
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return indexPath.row == 0 ? 200 : UITableView.automaticDimension
-//    }
-//    
-//    
-//}
-
 extension RatingVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: RatingCell.reuseId, for: indexPath)
-        
-        guard let ratingCell = cell as? RatingCell else {
-            
+        if indexPath.row == 0 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomRatingCell.reuseId, for: indexPath) as? CustomRatingCell else {
+                return UITableViewCell()
+            }
+            let topUsers = Array(users.prefix(3))
+            cell.configure(with: topUsers)
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: RatingCell.reuseId, for: indexPath) as? RatingCell else {
+                return UITableViewCell()
+            }
+            let user = users[indexPath.row]
+            setupCell(ratingCell: cell, number: indexPath.row + 1, user: user)
             return cell
         }
-        
-        
-        let index = indexPath.row
-        let number = index + 1
-        let user = users[index]
-        
-        setupCell(leaderBoardCell: ratingCell, number: number, user: user)
-        
-        return ratingCell
     }
     
-    func setupCell(leaderBoardCell: RatingCell, number: Int, user: ModelRating) {
-        
-        leaderBoardCell.numberLabel.text = "\(number)"
-        leaderBoardCell.scoreLabel.text = "\(user.score)"
-        leaderBoardCell.nameLabel.text = user.name == nil || user.name == "" ? "USER# \(user.id ?? 0)" : user.name
+    func setupCell(ratingCell: RatingCell, number: Int, user: User) {
+        ratingCell.numberLabel.text = "\(number)"
+        ratingCell.scoreLabel.text = "\(user.balance ?? 0)"
+        ratingCell.nameLabel.text = user.username == "" ? "USER# \(user.id ?? 0)" : user.username
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return indexPath.row == 0 ? 200 : UITableView.automaticDimension
     }
 }

@@ -48,7 +48,6 @@ class LoadingVC: UIViewController {
                     try await auth.authenticate()
                     checkToken()
                     createUserIfNeededUses()
-//                    createUserIfNeeded()
                     let vc = TabBar()
                     let navigationController = UINavigationController(rootViewController: vc)
                     navigationController.modalPresentationStyle = .fullScreen
@@ -62,7 +61,7 @@ class LoadingVC: UIViewController {
     
     private func createUserIfNeededUses() {
         Task {
-            let player =  try await post.createPlayerUser("Blank")
+            let player =  try await post.createPlayerUser(username: "Jinny")
         }
     }
     

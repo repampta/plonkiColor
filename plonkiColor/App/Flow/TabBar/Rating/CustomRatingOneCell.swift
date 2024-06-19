@@ -23,6 +23,7 @@ class CustomRatingCell: UITableViewCell {
     
     private(set) lazy var customImageView1: UIImageView = {
         let iv = UIImageView()
+        iv.image = .imgUserOne
         iv.contentMode = .scaleAspectFill
         iv.layer.shadowColor = UIColor.yellow.withAlphaComponent(0.8).cgColor
         iv.layer.shadowOpacity = 1
@@ -40,6 +41,7 @@ class CustomRatingCell: UITableViewCell {
     
     private(set) lazy var customImageView2: UIImageView = {
         let iv = UIImageView()
+        iv.image = .imgUserTwo
         iv.contentMode = .scaleAspectFill
         return iv
     }()
@@ -53,6 +55,7 @@ class CustomRatingCell: UITableViewCell {
     
     private(set) lazy var customImageView3: UIImageView = {
         let iv = UIImageView()
+        iv.image = .imgUserThree
         iv.contentMode = .scaleAspectFill
         return iv
     }()
@@ -173,7 +176,7 @@ class CustomRatingCell: UITableViewCell {
         }
         
         firstLabel.snp.makeConstraints { make in
-            make.left.equalTo(imageScore.snp.right).offset(2)
+            make.centerX.equalToSuperview()
             make.centerY.equalTo(imageScore)
         }
         
@@ -181,5 +184,15 @@ class CustomRatingCell: UITableViewCell {
             make.top.equalTo(imageScore.snp.bottom).offset(4)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    func configure(with users: [User]) {
+        guard users.count >= 3 else { return }
+        firstLabel1.text = "\(users[0].balance ?? 0)"
+        secondLabel1.text = users[0].username
+        firstLabel2.text = "\(users[1].balance ?? 0)"
+        secondLabel2.text = users[1].username
+        firstLabel3.text = "\(users[2].balance ?? 0)"
+        secondLabel3.text = users[2].username
     }
 }
