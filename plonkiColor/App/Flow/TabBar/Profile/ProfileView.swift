@@ -188,7 +188,7 @@ class ProfileView: UIView, UITextFieldDelegate {
     }()
     
     private(set) var countCompletedChapterLabel: UILabel = {
-        let label = UILabel.createLabel(withText: "0", font: .customFont(font: .chivo, style: .regular, size: 16), textColor: .cLight, lineHeightMultiple: 1)
+        let label = UILabel.createLabel(withText: "\(Chapter.isOpenChapter)", font: .customFont(font: .chivo, style: .regular, size: 16), textColor: .cLight, lineHeightMultiple: 1)
         return label
     }()
     

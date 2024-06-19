@@ -17,6 +17,24 @@ class Memory {
         }
     }
     
+    var levelComleted: Int {
+        get {
+            return defaults.integer(forKey: "levelComleted", defaultValue: 1)
+        }
+        set {
+            defaults.set(newValue, forKey: "levelComleted")
+        }
+    }
+    
+    var chapterComleted: Int {
+        get {
+            return defaults.integer(forKey: "chapterComleted", defaultValue: 0)
+        }
+        set {
+            defaults.set(newValue, forKey: "chapterComleted")
+        }
+    }
+    
     var lastBonusDate: Date? {
         get {
             return defaults.object(forKey: "lastBonusDate") as? Date

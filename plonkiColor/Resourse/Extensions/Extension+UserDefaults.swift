@@ -26,6 +26,11 @@ extension UserDefaults {
         }
     }
     
+    static var finishedChapters: Array<String> {
+            get { return standard.array(forKey: "finishedChapters") as? [String] ?? [] }
+            set { standard.setValue(newValue, forKey: "finishedChapters") }
+        }
+    
     static func openLevel(id: Int) {
         var chaptersAndLevels = UserDefaults.chaptersAndLevels
         chaptersAndLevels[currentChapter.rawValue]?.insert(id)

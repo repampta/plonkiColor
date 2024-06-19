@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		183C3B1C2C21810800A4CFDB /* Chivo-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 183C3B1B2C21810800A4CFDB /* Chivo-Black.ttf */; };
+		183C3B1F2C22F8EC00A4CFDB /* AuthTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C3B1E2C22F8EC00A4CFDB /* AuthTokenService.swift */; };
+		183C3B212C22FDC600A4CFDB /* RatingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C3B202C22FDC600A4CFDB /* RatingService.swift */; };
+		183C3B232C22FE6100A4CFDB /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C3B222C22FE6100A4CFDB /* PostService.swift */; };
+		183C3B252C22FEB000A4CFDB /* CreateRequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C3B242C22FEB000A4CFDB /* CreateRequestPayload.swift */; };
+		183C3B272C23196100A4CFDB /* ModelRating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183C3B262C23196100A4CFDB /* ModelRating.swift */; };
 		1865169A2C1330C100A8A076 /* RatingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 186516992C1330C100A8A076 /* RatingCell.swift */; };
 		1865169C2C1330C500A8A076 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169B2C1330C500A8A076 /* User.swift */; };
 		1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */; };
@@ -68,6 +73,11 @@
 
 /* Begin PBXFileReference section */
 		183C3B1B2C21810800A4CFDB /* Chivo-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chivo-Black.ttf"; sourceTree = "<group>"; };
+		183C3B1E2C22F8EC00A4CFDB /* AuthTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenService.swift; sourceTree = "<group>"; };
+		183C3B202C22FDC600A4CFDB /* RatingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingService.swift; sourceTree = "<group>"; };
+		183C3B222C22FE6100A4CFDB /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		183C3B242C22FEB000A4CFDB /* CreateRequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateRequestPayload.swift; sourceTree = "<group>"; };
+		183C3B262C23196100A4CFDB /* ModelRating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRating.swift; sourceTree = "<group>"; };
 		186516992C1330C100A8A076 /* RatingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingCell.swift; sourceTree = "<group>"; };
 		1865169B2C1330C500A8A076 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRatingOneCell.swift; sourceTree = "<group>"; };
@@ -139,6 +149,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		183C3B1D2C22F8D100A4CFDB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				183C3B1E2C22F8EC00A4CFDB /* AuthTokenService.swift */,
+				183C3B202C22FDC600A4CFDB /* RatingService.swift */,
+				183C3B222C22FE6100A4CFDB /* PostService.swift */,
+				183C3B242C22FEB000A4CFDB /* CreateRequestPayload.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		18A8ADC02C17360D0023D16D /* Game */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,6 +283,7 @@
 		18DF18B92C11E64400D6019B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				183C3B1D2C22F8D100A4CFDB /* Service */,
 				18DF18D42C11F10900D6019B /* Settings.swift */,
 				18DF18D62C11F11100D6019B /* Memory.swift */,
 				18DF18D82C11F21A00D6019B /* Double.swift */,
@@ -290,6 +312,7 @@
 				1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */,
 				1865169B2C1330C500A8A076 /* User.swift */,
 				18DF18C42C11E71C00D6019B /* RatingView.swift */,
+				183C3B262C23196100A4CFDB /* ModelRating.swift */,
 			);
 			path = Rating;
 			sourceTree = "<group>";
@@ -469,6 +492,7 @@
 				18A8ADC42C17361A0023D16D /* GameScene.swift in Sources */,
 				A5D217B72C1CD01D00B247AC /* DragDelegate.swift in Sources */,
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
+				183C3B252C22FEB000A4CFDB /* CreateRequestPayload.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
 				18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */,
 				18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */,
@@ -476,6 +500,7 @@
 				18DF18B32C11E42E00D6019B /* LoadingVC.swift in Sources */,
 				18DF18982C11E23B00D6019B /* AppDelegate.swift in Sources */,
 				18DF18C92C11E72800D6019B /* HomeView.swift in Sources */,
+				183C3B272C23196100A4CFDB /* ModelRating.swift in Sources */,
 				A5D217872C1B22DC00B247AC /* Ball.swift in Sources */,
 				A5D217852C1B22DC00B247AC /* Level.swift in Sources */,
 				18DF18C72C11E72300D6019B /* HomeVC.swift in Sources */,
@@ -485,6 +510,9 @@
 				A5D217A62C1C3AF700B247AC /* ModalView.swift in Sources */,
 				A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */,
 				18DF18D72C11F11100D6019B /* Memory.swift in Sources */,
+				183C3B212C22FDC600A4CFDB /* RatingService.swift in Sources */,
+				183C3B232C22FE6100A4CFDB /* PostService.swift in Sources */,
+				183C3B1F2C22F8EC00A4CFDB /* AuthTokenService.swift in Sources */,
 				18A8ADC62C17369B0023D16D /* CustomButton.swift in Sources */,
 				A5D217A92C1C44DE00B247AC /* SecondaryButtonStyle.swift in Sources */,
 				18DF18CB2C11E73100D6019B /* BonusVC.swift in Sources */,

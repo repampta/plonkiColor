@@ -49,16 +49,19 @@ class LevelViewModel: ObservableObject {
     }
     
     private func openNewChapter() {
-        let currentChapter = UserDefaults.currentChapter
-        let allChapters = Chapter.allCases
-        
-        if let currentChapterIndex = allChapters.firstIndex(where: { $0 == currentChapter }) {
-            if allChapters.indices.contains(currentChapterIndex + 1) {
-                let nextChapter = allChapters[currentChapterIndex + 1]
-                UserDefaults.chaptersAndLevels[nextChapter.rawValue] = [0]
+            let currentChapter = UserDefaults.currentChapter
+            let allChapters: [Chapter] = [.colorHarmony, .gradientChallenges]
+
+            if let currentChapterIndex = allChapters.firstIndex(where: { $0 == currentChapter }) {
+                if allChapters.indices.contains(currentChapterIndex + 1) {
+                    let nextChapter = allChapters[currentChapterIndex + 1]
+                    if !UserDefaults.chaptersAndLevels.keys.contains(nextChapter.rawValue) {
+                        UserDefaults.chaptersAndLevels[nextChapter.rawValue] = [0]
+                        /// Update counter of the open chapters
+                        UserDefaults.finishedChapters.append(currentChapter.rawValue)
+                    }
+                }
             }
         }
-    }
 }
-
 

@@ -6,12 +6,11 @@ import UIKit
 import SnapKit
 
 class ChapterVC: UIViewController {
-    
-    private var titleTableView: [String] = ["Color Harmony", "Gradient Challenges", "Color Contours", "Reflections and Symmetry", "Color Puzzles", "Curved Perspectives", "Color Waves", "Color Mosaics", "Color Cascades", "Masters of Color"]
-    
-    private var imagesChapters: [UIImage] = [.imgChapterOne, .imgChapterTwo, .imgChapterThree, .imgChapterFour, .imgChapterFive, .imgChapterSix, .imgChapterSeven, .imgChapterEight, .imgChapterNine, .imgChapterTen]
+        
+    private var chapter = Chapter.allCases
 
     var selectedIndex: IndexPath? = IndexPath(row: 0, section: 0)
+    private var currentChapter = UserDefaults.currentChapter
 
     var contentView: ChapterView {
         view as? ChapterView ?? ChapterView()
@@ -26,6 +25,13 @@ class ChapterVC: UIViewController {
         configureTableView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        update()
+    }
+    private func update() {
+        
+    }
     private func configureTableView() {
         contentView.chapterTableView.dataSource = self
         contentView.chapterTableView.delegate = self
@@ -36,16 +42,23 @@ class ChapterVC: UIViewController {
 extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titleTableView.count
+        return chapter.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChapterCell.reuseId, for: indexPath) as! ChapterCell
-        cell.tittleLabel.text = titleTableView[indexPath.row]
-        cell.chapterImage.image = imagesChapters[indexPath.row]
+        cell.tittleLabel.text = chapter[indexPath.row].titleChapter
+        cell.chapterImage.image = chapter[indexPath.row].imagesChapters
         
         cell.contentView.alpha = indexPath.row <= 1 ? 1.0 : 0.6
 
+//        if chapter[indexPath.row].isOpen {
+//            cell.imgCompleted.isHidden = false
+//        } else {
+//            cell.imgCompleted.isHidden = true
+//        }
+        
+        cell.imgCompleted.isHidden = !chapter[indexPath.row].isFinished
         
         if indexPath == selectedIndex {
             cell.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
@@ -96,7 +109,9 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         default:
             return
         }
-        self.tabBarController?.selectedIndex = 2
+        if let tabBar = self.tabBarController as? TabBar {
+                   tabBar.selectTab(at: 2)
+               }
     }
 }
 

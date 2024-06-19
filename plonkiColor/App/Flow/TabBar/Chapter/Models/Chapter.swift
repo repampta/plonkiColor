@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 enum Chapter: String {
     case colorHarmony
@@ -35,6 +36,17 @@ extension Chapter {
         UserDefaults.chaptersAndLevels.keys.contains(self.rawValue)
     }
     
+    static var isOpenChapter: Int {
+        Chapter.allCases.filter {
+            $0.isOpen
+        }.count
+    }
+    
+    var isFinished: Bool {
+            UserDefaults.finishedChapters.contains(self.rawValue)
+        }
+
+    
     static var currentChapter: Chapter {
         UserDefaults.currentChapter
     }
@@ -48,5 +60,64 @@ extension Chapter {
         }
         /// If there is non return the default level of the first chapter
         return Level(level: ColorHarmonyLevel.one, id: ColorHarmonyLevel.one.rawValue)
+    }
+    
+    var titleChapter: String {
+        switch self {
+        case .colorHarmony:
+             "Color Harmony"
+        case .gradientChallenges:
+            "Gradient Challenges"
+        case .colorContours:
+            "Color Contours"
+
+        case .reflectionsAndSymmetry:
+            "Reflections And Symmetry"
+
+        case .colorPuzzles:
+            "Color Puzzles"
+
+        case .curvedPerspectives:
+            "Curved Perspectives"
+
+        case .colorWaves:
+            "Color Waves"
+
+        case .colorMosaics:
+            "Color Mosaics"
+
+        case .colorCascades:
+            "Color Cascades"
+
+        case .mastersOfColor:
+            "Masters of Color"
+
+        }
+    }
+    
+    var imagesChapters: UIImage {
+        switch self  {
+            
+        case .colorHarmony:
+                .imgChapterOne
+        case .gradientChallenges:
+                .imgChapterTwo
+        case .colorContours:
+                .imgChapterThree
+        case .reflectionsAndSymmetry:
+                .imgChapterFour
+        case .colorPuzzles:
+                .imgChapterFive
+        case .curvedPerspectives:
+                .imgChapterSix
+        case .colorWaves:
+                .imgChapterSeven
+        case .colorMosaics:
+                .imgChapterEight
+        case .colorCascades:
+                .imgChapterNine
+        case .mastersOfColor:
+                .imgChapterTen
+        }
     }
 }
