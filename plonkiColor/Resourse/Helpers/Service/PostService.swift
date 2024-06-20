@@ -10,11 +10,11 @@ class PostRequestService {
     static let shared = PostRequestService()
     private init() {}
     
-    private let baseUrl = "https://ball-color.br-soft.online"
+    private let baseUrl = "https://ball-color.br-soft.online/api/user/balance-update"
     
     func updateData(id: Int, payload: UpdatePayload, completion: @escaping (Result<CreateResponse, Error>) -> Void) {
         
-        guard let url = URL(string: baseUrl + "/api/user/\(id)") else {
+        guard let url = URL(string: baseUrl + "/\(id)") else {
             completion(.failure(PostRequestServiceError.unkonwn))
             return
         }
@@ -44,57 +44,57 @@ class PostRequestService {
         }.resume()
     }
     
-    func createPlayer(payload: CreateRequestPayload, successCompletion: @escaping(CreateResponse) -> Void, errorCompletion: @escaping (Error) -> Void) {
-        
-        guard let url = URL(string: baseUrl + "/api/players/") else {
-            print("Неверный URL")
-            DispatchQueue.main.async {
-                errorCompletion(PostRequestServiceError.unkonwn)
-            }
-            return
-        }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        let postString = payload.makeBody()
-        request.httpBody = postString.data(using: .utf8)
-        
-        guard let token = AuthTokenService.shared.token else { return }
-        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                DispatchQueue.main.async {
-                    errorCompletion(PostRequestServiceError.noData)
-                }
-                return
-            }
-            
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    errorCompletion(PostRequestServiceError.unkonwn)
-                }
-                return
-            }
-            
-            do {
-                let decoder = JSONDecoder()
-                let playerOne = try decoder.decode(CreateResponse.self, from: data)
-                DispatchQueue.main.async {
-                    successCompletion(playerOne)
-                    print("successCompletion-\(playerOne)")
-                }
-            }catch {
-                print("error", error)
-                
-                DispatchQueue.main.async {
-                    errorCompletion(error)
-                }
-            }
-        }
-        task.resume()
-    }
- 
+//    func createPlayer(payload: CreateRequestPayload, successCompletion: @escaping(CreateResponse) -> Void, errorCompletion: @escaping (Error) -> Void) {
+//        
+//        guard let url = URL(string: baseUrl + "/api/players/") else {
+//            print("Неверный URL")
+//            DispatchQueue.main.async {
+//                errorCompletion(PostRequestServiceError.unkonwn)
+//            }
+//            return
+//        }
+//        
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        let postString = payload.makeBody()
+//        request.httpBody = postString.data(using: .utf8)
+//        
+//        guard let token = AuthTokenService.shared.token else { return }
+//        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+//        
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let error = error {
+//                DispatchQueue.main.async {
+//                    errorCompletion(PostRequestServiceError.noData)
+//                }
+//                return
+//            }
+//            
+//            guard let data = data else {
+//                DispatchQueue.main.async {
+//                    errorCompletion(PostRequestServiceError.unkonwn)
+//                }
+//                return
+//            }
+//            
+//            do {
+//                let decoder = JSONDecoder()
+//                let playerOne = try decoder.decode(CreateResponse.self, from: data)
+//                DispatchQueue.main.async {
+//                    successCompletion(playerOne)
+//                    print("successCompletion-\(playerOne)")
+//                }
+//            }catch {
+//                print("error", error)
+//                
+//                DispatchQueue.main.async {
+//                    errorCompletion(error)
+//                }
+//            }
+//        }
+//        task.resume()
+//    }
+// 
     func createPlayerUser(username: String) async throws -> PlayerNetworkModel {
            
            guard let token = AuthTokenService.shared.token else { return .defaultInstance }

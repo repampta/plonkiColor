@@ -90,38 +90,57 @@ class BonusVC: UIViewController {
         }
     }
     
+    func updateScore() {
+        let payload = UpdatePayload(name: nil, balance: Memory.shared.scoreCoints)
+        PostRequestService.shared.updateData(id: Memory.shared.userID!, payload: payload) { result in
+           DispatchQueue.main.async {
+               switch result {
+               case .success(_):
+                   print("Success")
+               case .failure(let failure):
+                   print("Error - \(failure.localizedDescription)")
+               }
+           }
+       }
+   }
+    
     private func showResultView() {
         switch scoreCounts {
         case contentView.segmentValues[0]:
             print("Bonus scorePoints 01 - red")
             presentPrizeView(coint: "100")
             Memory.shared.scoreCoints += 100
+            updateScore()
             
         case contentView.segmentValues[1]:
             print("Bonus scorePoints 02 - white")
             presentPrizeView(coint: "500")
             Memory.shared.scoreCoints += 500
-
+            updateScore()
+            
         case contentView.segmentValues[2]:
             print("Bonus scorePoints 03 -yellow")
             presentPrizeView(coint: "300")
             Memory.shared.scoreCoints += 300
-
+            updateScore()
+            
         case contentView.segmentValues[3]:
             print("Bonus scorePoints 04 - cyan")
             presentPrizeView(coint: "200")
             Memory.shared.scoreCoints += 200
-
+            updateScore()
+            
         case contentView.segmentValues[4]:
             print("Bonus scorePoints 05 - brown")
             presentPrizeView(coint: "6000")
             Memory.shared.scoreCoints += 6000
-
+            updateScore()
+            
         case contentView.segmentValues[5]:
             print("Bonus scorePoints 06 -green")
             presentPrizeView(coint: "400")
             Memory.shared.scoreCoints += 400
-
+            updateScore()
         default:
             break
         }
