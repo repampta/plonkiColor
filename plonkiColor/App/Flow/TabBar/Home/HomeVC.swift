@@ -157,7 +157,6 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
           guard let visibleIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
           let pageIndex = visibleIndexPath.item + 1
-          print("didEndDisplaying - Current page index: \(pageIndex)")
           
           if levels.indices.contains(visibleIndexPath.item) {
               let level = levels[visibleIndexPath.item]

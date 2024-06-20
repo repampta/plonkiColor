@@ -36,7 +36,7 @@ class AuthTokenService {
             let (data, response) = try await session.data(for: request)
             if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
                let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted) {
-                print(String(decoding: jsonData, as: UTF8.self))
+//                print(String(decoding: jsonData, as: UTF8.self))
             } else {
                 print("json data malformed")
             }

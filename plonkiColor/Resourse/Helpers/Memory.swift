@@ -10,7 +10,7 @@ class Memory {
     
     var scoreCoins: Int {
         get {
-            return defaults.integer(forKey: "scoreCoints", defaultValue: 30)
+            return defaults.integer(forKey: "scoreCoints", defaultValue: 0)
         }
         set {
             defaults.set(newValue, forKey: "scoreCoints")

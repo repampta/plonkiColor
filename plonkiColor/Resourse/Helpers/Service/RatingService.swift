@@ -48,7 +48,7 @@ class RatingService {
                 return
             }
             if let jsonString = String(data: data, encoding: .utf8) {
-                print(jsonString)
+//                print(jsonString)
             }
             
             do {
@@ -56,7 +56,7 @@ class RatingService {
                 let ratingModel = try decoder.decode([User].self, from: data)
                 DispatchQueue.main.async {
                     successCompletion(ratingModel)
-                    print("\(ratingModel)")
+//                    print("\(ratingModel)")
                 }
             }catch {
                 print("error - ", error)
@@ -73,7 +73,6 @@ class RatingService {
         var request = URLRequest(url: url)
         request.httpMethod = "PATCH"
         
-        // Получение токена авторизации
         guard let token = AuthTokenService.shared.token else {
             print("No token found")
             return
@@ -86,17 +85,14 @@ class RatingService {
         
         var body = Data()
         
-        // Добавляем user_id
         body.append("--\(boundary)\r\n")
         body.append("Content-Disposition: form-data; name=\"user_id\"\r\n\r\n")
         body.append("\(userId)\r\n")
         
-        // Добавляем name
         body.append("--\(boundary)\r\n")
         body.append("Content-Disposition: form-data; name=\"name\"\r\n\r\n")
         body.append("\(name)\r\n")
         
-        // Завершаем тело запроса
         body.append("--\(boundary)--\r\n")
         
         let task = URLSession.shared.uploadTask(with: request, from: body) { data, response, error in
@@ -123,8 +119,8 @@ class RatingService {
         task.resume()
     }
 }
-    // Добавление метода append для Data
-    extension Data {
+
+extension Data {
         mutating func append(_ string: String) {
             if let data = string.data(using: .utf8) {
                 append(data)
