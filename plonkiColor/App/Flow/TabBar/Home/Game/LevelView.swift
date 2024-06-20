@@ -88,7 +88,7 @@ struct LevelView: View {
             Image(.gameRestart)
                 .onTapGesture { restartGame() }
             Spacer()
-            Image(.gameRules)
+            Image(.gameRules).opacity(0)
         }
         .shadow(color: .black.opacity(0.6), radius: 4, y: 2)
         .padding(.horizontal, 20)

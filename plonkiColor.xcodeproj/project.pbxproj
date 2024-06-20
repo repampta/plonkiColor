@@ -48,6 +48,10 @@
 		18DF18DB2C11F23700D6019B /* Font + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DA2C11F23700D6019B /* Font + Extension.swift */; };
 		18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DD2C11F4C000D6019B /* InfoVC.swift */; };
 		18DF18E02C11F4C700D6019B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DF18DF2C11F4C700D6019B /* InfoView.swift */; };
+		A58086EA2C2482A8000A60F6 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58086E92C2482A8000A60F6 /* LoadingScreen.swift */; };
+		A58086EC2C24832F000A60F6 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58086EB2C24832F000A60F6 /* ProgressBarView.swift */; };
+		A58086EE2C248460000A60F6 /* Extension+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58086ED2C248460000A60F6 /* Extension+View.swift */; };
+		A58086F02C248B53000A60F6 /* LoadingScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A58086EF2C248B53000A60F6 /* LoadingScreenViewModel.swift */; };
 		A5D217832C1B22DC00B247AC /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2177D2C1B22DC00B247AC /* Chapter.swift */; };
 		A5D217852C1B22DC00B247AC /* Level.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D2177F2C1B22DC00B247AC /* Level.swift */; };
 		A5D217862C1B22DC00B247AC /* ColorHarmonyLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */; };
@@ -114,6 +118,10 @@
 		18DF18DA2C11F23700D6019B /* Font + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extension.swift"; sourceTree = "<group>"; };
 		18DF18DD2C11F4C000D6019B /* InfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoVC.swift; sourceTree = "<group>"; };
 		18DF18DF2C11F4C700D6019B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		A58086E92C2482A8000A60F6 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		A58086EB2C24832F000A60F6 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		A58086ED2C248460000A60F6 /* Extension+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+View.swift"; sourceTree = "<group>"; };
+		A58086EF2C248B53000A60F6 /* LoadingScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreenViewModel.swift; sourceTree = "<group>"; };
 		A5D2177D2C1B22DC00B247AC /* Chapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		A5D2177F2C1B22DC00B247AC /* Level.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Level.swift; sourceTree = "<group>"; };
 		A5D217802C1B22DC00B247AC /* ColorHarmonyLevel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorHarmonyLevel.swift; sourceTree = "<group>"; };
@@ -241,6 +249,9 @@
 			children = (
 				18DF18B22C11E42E00D6019B /* LoadingVC.swift */,
 				18DF18B42C11E43300D6019B /* LoadingView.swift */,
+				A58086E92C2482A8000A60F6 /* LoadingScreen.swift */,
+				A58086EF2C248B53000A60F6 /* LoadingScreenViewModel.swift */,
+				A58086EB2C24832F000A60F6 /* ProgressBarView.swift */,
 			);
 			path = Loading;
 			sourceTree = "<group>";
@@ -368,6 +379,7 @@
 			children = (
 				A5D2178C2C1B277400B247AC /* Extension+Color.swift */,
 				A5D2178F2C1B27F300B247AC /* Extension+UserDefaults.swift */,
+				A58086ED2C248460000A60F6 /* Extension+View.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -494,6 +506,7 @@
 				18DF18BF2C11E70C00D6019B /* ProfileVC.swift in Sources */,
 				183C3B252C22FEB000A4CFDB /* CreateRequestPayload.swift in Sources */,
 				18DF18D12C11E74000D6019B /* ChapterView.swift in Sources */,
+				A58086EE2C248460000A60F6 /* Extension+View.swift in Sources */,
 				18DF18DE2C11F4C000D6019B /* InfoVC.swift in Sources */,
 				18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */,
 				A5D217AB2C1C47B600B247AC /* CustomInnerShadow.swift in Sources */,
@@ -530,8 +543,11 @@
 				A5D2179A2C1B2B2A00B247AC /* LevelView.swift in Sources */,
 				18DF18C12C11E71000D6019B /* ProfileView.swift in Sources */,
 				18DF18CF2C11E73D00D6019B /* ChapterVC.swift in Sources */,
+				A58086F02C248B53000A60F6 /* LoadingScreenViewModel.swift in Sources */,
+				A58086EA2C2482A8000A60F6 /* LoadingScreen.swift in Sources */,
 				186516A02C134A0500A8A076 /* CircleView.swift in Sources */,
 				A5D217B52C1C659C00B247AC /* GradientChallenges.swift in Sources */,
+				A58086EC2C24832F000A60F6 /* ProgressBarView.swift in Sources */,
 				A5D217A72C1C3AF700B247AC /* ModalViewStateKey.swift in Sources */,
 				A5D2178B2C1B264900B247AC /* LevelTypeProtocol.swift in Sources */,
 				18DF18D92C11F21A00D6019B /* Double.swift in Sources */,
