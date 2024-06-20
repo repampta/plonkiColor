@@ -31,6 +31,10 @@ final class TabBar: UITabBarController {
         $0.alignment = .center
         $0.backgroundColor = .cDarkPurple
         $0.frame = CGRect(x: 0, y: view.frame.height - 90, width: view.frame.width, height: 90)
+        $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+        $0.layer.shadowOpacity = 1
+        $0.layer.shadowRadius = 12
+        $0.layer.shadowOffset = CGSize(width: 0, height: -4)
         $0.addArrangedSubview(btn1)
         $0.addArrangedSubview(btn2)
         $0.addArrangedSubview(btn3)
@@ -63,10 +67,6 @@ final class TabBar: UITabBarController {
             $0.tag = tag
             $0.accessibilityIdentifier = icon
             $0.accessibilityHint = selectedIcon
-            $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
-            $0.layer.shadowOpacity = 1
-            $0.layer.shadowRadius = 12
-            $0.layer.shadowOffset = CGSize(width: 0, height: -14)
             return $0
         }(UIButton(primaryAction: action))
     }

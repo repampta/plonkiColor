@@ -25,7 +25,11 @@ class RatingVC: UIViewController {
         loadUsers()
 
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadUsers()
+
+    }
     func sorterScoreUsers() {
         users.sort {
             $1.balance ?? 0 < $0.balance ?? 0

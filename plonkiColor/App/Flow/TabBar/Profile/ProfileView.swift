@@ -598,7 +598,7 @@ class ProfileView: UIView, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         print("Клавиатура спрятана")
-        RatingService.shared.updateUser(userId: Memory.shared.userID ?? 0, name: "Demos")
+        RatingService.shared.updateUser(userId: Memory.shared.userID ?? 0, name: Memory.shared.userName ?? "User# \(Memory.shared.userID ?? 0)")
         return true
     }
 }

@@ -176,7 +176,7 @@ class CustomRatingCell: UITableViewCell {
         }
         
         firstLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.left.equalTo(imageScore.snp.right).offset(2)
             make.centerY.equalTo(imageScore)
         }
         

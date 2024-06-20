@@ -1,6 +1,5 @@
 //
 //  ChapterVC.swift
-
 import Foundation
 import UIKit
 import SnapKit
@@ -64,7 +63,7 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
             cell.layer.shadowRadius = 20
             cell.layer.shadowOffset = CGSize(width: 0, height: 0)
 
-            } else {
+        } else {
             cell.chapterImage.layer.borderColor = UIColor.clear.cgColor
             cell.chapterImage.layer.borderWidth = 0
             cell.chapterImage.layer.cornerRadius = 20
@@ -74,27 +73,36 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       
-        if let previousIndex = selectedIndex {
-                   let previousCell = tableView.cellForRow(at: previousIndex) as? ChapterCell
-                   previousCell?.chapterImage.layer.borderColor = UIColor.clear.cgColor
-                   previousCell?.chapterImage.layer.borderWidth = 0
+        if indexPath.row >= 2 {
+            let alert = UIAlertController(title: "Coming soon", message: "Update will be available soon", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             
-               }
-               
-            let cell = tableView.cellForRow(at: indexPath) as? ChapterCell
-            cell?.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
-            cell?.chapterImage.layer.borderWidth = 8
-            cell?.chapterImage.layer.cornerRadius = 20
-            cell?.layer.masksToBounds = false
-            cell?.layer.shadowColor = UIColor.cDarkPurple.withAlphaComponent(0.8).cgColor
-            cell?.layer.shadowOpacity = 1
-            cell?.layer.shadowRadius = 20
-            cell?.layer.shadowOffset = CGSize(width: 0, height: 0)
-
+            if let previousIndex = selectedIndex {
+                tableView.deselectRow(at: indexPath, animated: true)
+                tableView.selectRow(at: previousIndex, animated: true, scrollPosition: .none)
+            }
+            return
+        }
+        
+        if let previousIndex = selectedIndex {
+            let previousCell = tableView.cellForRow(at: previousIndex) as? ChapterCell
+            previousCell?.chapterImage.layer.borderColor = UIColor.clear.cgColor
+            previousCell?.chapterImage.layer.borderWidth = 0
+        }
+        
+        let cell = tableView.cellForRow(at: indexPath) as? ChapterCell
+        cell?.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
+        cell?.chapterImage.layer.borderWidth = 8
+        cell?.chapterImage.layer.cornerRadius = 20
+        cell?.layer.masksToBounds = false
+        cell?.layer.shadowColor = UIColor.cDarkPurple.withAlphaComponent(0.8).cgColor
+        cell?.layer.shadowOpacity = 1
+        cell?.layer.shadowRadius = 20
+        cell?.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         selectedIndex = indexPath
 
-        
         switch indexPath.row {
         case 0:
             UserDefaults.currentChapter = .colorHarmony
@@ -103,9 +111,9 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         default:
             return
         }
+        
         if let tabBar = self.tabBarController as? TabBar {
-                   tabBar.selectTab(at: 2)
-               }
+            tabBar.selectTab(at: 2)
+        }
     }
 }
-

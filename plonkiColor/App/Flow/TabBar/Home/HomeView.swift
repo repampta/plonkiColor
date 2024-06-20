@@ -106,7 +106,7 @@ class HomeView: UIView {
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
             
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.7), heightDimension: .fractionalHeight(1.0))
+            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
             let section = NSCollectionLayoutSection(group: group)
@@ -124,6 +124,10 @@ class HomeView: UIView {
             if i == currentPage {
                 label.textColor = .cGradOne
                 label.font = .customFont(font: .chivo, style: .black, size: 54)
+                label.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+                label.layer.shadowOpacity = 1
+                label.layer.shadowRadius = 8
+                label.layer.shadowOffset = CGSize(width: 0, height: 8)
             } else {
                 label.textColor = .cLight.withAlphaComponent(0.4)
                 label.font = .customFont(font: .chivo, style: .black, size: 24)
@@ -138,9 +142,14 @@ class HomeView: UIView {
                 if index + 1 == currentPage {
                     label.textColor = .cGradOne
                     label.font = .customFont(font: .chivo, style: .black, size: 54)
+                    label.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
+                    label.layer.shadowOpacity = 1
+                    label.layer.shadowRadius = 8
+                    label.layer.shadowOffset = CGSize(width: 0, height: 8)
                 } else {
                     label.textColor = .cLight.withAlphaComponent(0.4)
                     label.font = .customFont(font: .chivo, style: .black, size: 24)
+
                 }
             }
         }

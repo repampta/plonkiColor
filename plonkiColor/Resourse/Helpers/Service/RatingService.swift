@@ -13,26 +13,26 @@ enum RatingServiceError: Error {
 }
 
 class RatingService {
-
+    
     static let shared = RatingService()
     private init() {}
     
     private let urlString = "https://ball-color.br-soft.online/api/leaderboard"
-
+    
     func fetchData(successCompletion: @escaping([User]) -> Void, errorCompletion: @escaping (Error) -> Void) {
-
+        
         guard let url = URL(string: urlString) else {
             print("Неверный URL")
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-     
+        
         
         guard let token = AuthTokenService.shared.token else { return }
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-
+        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if error != nil {
                 DispatchQueue.main.async {
@@ -68,41 +68,68 @@ class RatingService {
         }
         task.resume()
     }
-    
     func updateUser(userId: Int, name: String) {
-            let url = URL(string: "https://ball-color.br-soft.online/api/user")!
-            var request = URLRequest(url: url)
-            request.httpMethod = "PATCH"
-        guard let token = AuthTokenService.shared.token else { return }
+        let url = URL(string: "https://ball-color.br-soft.online/api/user")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        
+        // Получение токена авторизации
+        guard let token = AuthTokenService.shared.token else {
+            print("No token found")
+            return
+        }
+        
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-
-            request.setValue("application/json", forHTTPHeaderField: "Accept")
-            request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
-            
-            let parameters: [String: Any] = [
-                "user_id": userId,
-                "name": name,
-            ]
-            
-            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    print("Error: \(error)")
-                    return
-                }
-                
-                guard let data = data else { return }
-                
-                do {
-                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
-                        print("Response: \(json)")
-                    }
-                } catch {
-                    print("Error parsing response: \(error)")
-                }
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var body = Data()
+        
+        // Добавляем user_id
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"user_id\"\r\n\r\n")
+        body.append("\(userId)\r\n")
+        
+        // Добавляем name
+        body.append("--\(boundary)\r\n")
+        body.append("Content-Disposition: form-data; name=\"name\"\r\n\r\n")
+        body.append("\(name)\r\n")
+        
+        // Завершаем тело запроса
+        body.append("--\(boundary)--\r\n")
+        
+        let task = URLSession.shared.uploadTask(with: request, from: body) { data, response, error in
+            if let error = error {
+                print("Error: \(error)")
+                return
             }
             
-            task.resume()
+            guard let data = data else { return }
+            
+            do {
+                if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    print("Response: \(json)")
+                } else {
+                    if let responseString = String(data: data, encoding: .utf8) {
+                        print("Response String: \(responseString)")
+                    }
+                }
+            } catch {
+                print("Error parsing response: \(error)")
+            }
         }
+        
+        task.resume()
+    }
 }
+    // Добавление метода append для Data
+    extension Data {
+        mutating func append(_ string: String) {
+            if let data = string.data(using: .utf8) {
+                append(data)
+            }
+        }
+    }
+
+
