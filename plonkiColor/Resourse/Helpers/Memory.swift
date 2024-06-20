@@ -8,7 +8,7 @@ class Memory {
     
     let defaults = UserDefaults.standard
     
-    var scoreCoints: Int {
+    var scoreCoins: Int {
         get {
             return defaults.integer(forKey: "scoreCoints", defaultValue: 30)
         }

@@ -43,8 +43,8 @@ extension Chapter {
     }
     
     var isFinished: Bool {
-            UserDefaults.finishedChapters.contains(self.rawValue)
-        }
+        UserDefaults.finishedChapters.contains(self.rawValue)
+    }
 
     
     static var currentChapter: Chapter {
@@ -60,6 +60,17 @@ extension Chapter {
         }
         /// If there is non return the default level of the first chapter
         return Level(level: ColorHarmonyLevel.one, id: ColorHarmonyLevel.one.rawValue)
+    }
+    
+    static var amountOfOpenLevels: Int {
+        var openLevels = 0
+        let chaptersAndLevels = UserDefaults.chaptersAndLevels
+        
+        chaptersAndLevels.forEach { key, value in
+            openLevels += (chaptersAndLevels[key]?.count ?? 0 ) - 1
+        }
+        
+        return openLevels
     }
     
     var titleChapter: String {

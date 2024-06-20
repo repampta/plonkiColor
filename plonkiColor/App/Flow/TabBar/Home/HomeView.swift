@@ -23,7 +23,7 @@ class HomeView: UIView {
     }()
     
     private (set) var scoreLabel: UILabel = {
-        let label = UILabel.createLabel(withText: "\(Memory.shared.scoreCoints)", font: .customFont(font: .chivo, style: .black, size: 24), textColor: .cGradOne, lineHeightMultiple: 1)
+        let label = UILabel.createLabel(withText: "\(Memory.shared.scoreCoins)", font: .customFont(font: .chivo, style: .black, size: 24), textColor: .cGradOne, lineHeightMultiple: 1)
         return label
     }()
     

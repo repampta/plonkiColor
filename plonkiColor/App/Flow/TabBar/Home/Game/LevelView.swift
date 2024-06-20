@@ -73,6 +73,10 @@ struct LevelView: View {
                     withAnimation { levelViewModel.nextLevel() }
                     hideModelWinView()
                 }
+                .onAppear {
+                    Memory.shared.scoreCoins += 50
+                    levelViewModel.updateScore()
+                }
         }
     }
     
