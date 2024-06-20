@@ -79,7 +79,7 @@ extension RatingVC: UITableViewDataSource, UITableViewDelegate {
     func setupCell(ratingCell: RatingCell, number: Int, user: User) {
         ratingCell.numberLabel.text = "\(number)"
         ratingCell.scoreLabel.text = "\(user.balance ?? 0)"
-        ratingCell.nameLabel.text = user.username == "" ? "USER# \(user.id ?? 0)" : user.username
+        ratingCell.nameLabel.text = user.name == nil ? "USER# \(user.id ?? 0)" : user.name
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

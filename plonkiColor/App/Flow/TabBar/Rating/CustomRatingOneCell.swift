@@ -189,10 +189,11 @@ class CustomRatingCell: UITableViewCell {
     func configure(with users: [User]) {
         guard users.count >= 3 else { return }
         firstLabel1.text = "\(users[0].balance ?? 0)"
-        secondLabel1.text = users[0].username
         firstLabel2.text = "\(users[1].balance ?? 0)"
-        secondLabel2.text = users[1].username
         firstLabel3.text = "\(users[2].balance ?? 0)"
-        secondLabel3.text = users[2].username
+        secondLabel1.text = users[0].name == nil ? "USER# \(users[0].id ?? 0)" : users[0].name
+        secondLabel2.text = users[1].name == nil ? "USER# \(users[1].id ?? 0)" : users[1].name
+        secondLabel3.text = users[2].name == nil ? "USER# \(users[2].id ?? 0)" : users[2].name
+
     }
 }

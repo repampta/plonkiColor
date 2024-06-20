@@ -20,7 +20,7 @@ struct CreateRequestPayload: Encodable {
 struct CreateResponse: Decodable {
     let name: String?
     let id: Int
-    let score: Int
+    let balance: Int
     let imageURL: String?
     
 }
@@ -28,6 +28,6 @@ struct CreateResponse: Decodable {
 struct UpdatePayload: Encodable {
     
     let name: String?
-    let score: Int?
+    let balance: Int?
 }
 

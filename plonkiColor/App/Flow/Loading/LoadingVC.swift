@@ -60,22 +60,30 @@ class LoadingVC: UIViewController {
         }
     
     private func createUserIfNeededUses() {
-        Task {
-            let player =  try await post.createPlayerUser(username: "Jinny")
-        }
-    }
-    
-    private func createUserIfNeeded() {
         if ud.userID == nil {
-            let payload = CreateRequestPayload(name: nil, score: ud.scoreCoints)
-            post.createPlayer(payload: payload) { [weak self] createResponse in
-                guard let self = self else { return }
-                ud.userID = createResponse.id
-            } errorCompletion: { error in
-                print("Ошибка получени данных с бека")
+            let uuid = UUID().uuidString
+            Task {
+                do {
+                    let player = try await post.createPlayerUser(username: uuid)
+                    ud.userID = player.id
+                } catch {
+                    print("Ошибка создания пользователя: \(error.localizedDescription)")
+                }
             }
         }
     }
+
+//    private func createUserIfNeeded() {
+//        if ud.userID == nil {
+//            let payload = CreateRequestPayload(name: nil, score: ud.scoreCoints)
+//            post.createPlayer(payload: payload) { [weak self] createResponse in
+//                guard let self = self else { return }
+//                ud.userID = createResponse.id
+//            } errorCompletion: { error in
+//                print("Ошибка получени данных с бека")
+//            }
+//        }
+//    }
     
     private func checkToken() {
         guard let token = auth.token else {
