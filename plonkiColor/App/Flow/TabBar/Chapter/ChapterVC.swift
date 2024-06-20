@@ -52,12 +52,6 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         
         cell.contentView.alpha = indexPath.row <= 1 ? 1.0 : 0.6
 
-//        if chapter[indexPath.row].isOpen {
-//            cell.imgCompleted.isHidden = false
-//        } else {
-//            cell.imgCompleted.isHidden = true
-//        }
-        
         cell.imgCompleted.isHidden = !chapter[indexPath.row].isFinished
         
         if indexPath == selectedIndex {

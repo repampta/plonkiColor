@@ -47,6 +47,7 @@ class HomeVC: UIViewController {
             self.levels = UserDefaults.currentChapter.levels
             self.currentLevelIndex = Chapter.currentLevel.id
             contentView.collectionView.reloadData()
+            
         }
         
         /// Added the scroll to the index of the current level
@@ -68,6 +69,7 @@ class HomeVC: UIViewController {
         contentView.collectionView.dataSource = self
         contentView.collectionView.delegate = self
         contentView.collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseId)
+
     }
     
     private func scrollCollectionToTheCurrentLevel() {
@@ -87,7 +89,7 @@ class HomeVC: UIViewController {
        }
 }
 
-extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate {
+extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return levels.count
     }
@@ -121,6 +123,37 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
     }
     
     
+//    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//          guard let visibleCells = collectionView.visibleCells as? [HomeCell] else { return }
+//          
+//          let visibleIndexPaths = visibleCells.compactMap { collectionView.indexPath(for: $0) }
+//          
+//          guard !visibleIndexPaths.isEmpty else { return }
+//          
+//          let sortedVisibleIndexPaths = visibleIndexPaths.sorted(by: { $0.item < $1.item })
+//          let centerIndex = sortedVisibleIndexPaths.count / 2
+//          
+//          let centerIndexPath = sortedVisibleIndexPaths[centerIndex]
+//          let pageIndex = centerIndexPath.item + 1
+//          
+//          print("didEndDisplaying - Current page index: \(pageIndex)")
+//          
+//          if levels.indices.contains(centerIndexPath.item) {
+//              let level = levels[centerIndexPath.item]
+//              if let visibleCell = collectionView.cellForItem(at: centerIndexPath) as? HomeCell {
+//                  if level.isOpen {
+//                      visibleCell.button.setBackgroundImage(UIImage(named: "btnActivity"), for: .normal)
+//                      visibleCell.button.isEnabled = true
+//                  } else {
+//                      visibleCell.button.setBackgroundImage(UIImage(named: "btnLocked"), for: .normal)
+//                      visibleCell.button.isEnabled = false
+//                  }
+//              }
+//          }
+//          contentView.updatePageNumber(currentPage: pageIndex)
+//      }
+//    
+    
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
           guard let visibleIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
           let pageIndex = visibleIndexPath.item + 1
@@ -141,6 +174,7 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UIScroll
           contentView.updatePageNumber(currentPage: pageIndex)
       }
 
+    
 }
 
 

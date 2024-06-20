@@ -62,12 +62,39 @@ class Memory {
         }
     }
     
-    var case0ImgTwo: Bool {
+    var colorNovice: Bool {
         get {
-            return defaults.bool(forKey: "case0ImgTwo")
+            return defaults.bool(forKey: "colorNovice")
         }
         set {
-            defaults.set(newValue, forKey: "case0ImgTwo")
+            defaults.set(newValue, forKey: "colorNovice")
+        }
+    }
+    
+    var patternExplorer: Bool {
+        get {
+            return defaults.bool(forKey: "patternExplorer")
+        }
+        set {
+            defaults.set(newValue, forKey: "patternExplorer")
+        }
+    }
+    
+    var colorApprentice: Bool {
+        get {
+            return defaults.bool(forKey: "colorApprentice")
+        }
+        set {
+            defaults.set(newValue, forKey: "colorApprentice")
+        }
+    }
+    
+    var harmoniousMastery: Bool {
+        get {
+            return defaults.bool(forKey: "harmoniousMastery")
+        }
+        set {
+            defaults.set(newValue, forKey: "harmoniousMastery")
         }
     }
     

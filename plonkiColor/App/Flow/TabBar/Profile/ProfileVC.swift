@@ -35,7 +35,7 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
         contentView.editBtn.addTarget(self, action: #selector(tappeUpdateName), for: .touchUpInside)
         contentView.infoBtn.addTarget(self, action: #selector(pushInfo), for: .touchUpInside)
         contentView.rateBtn.addTarget(self, action: #selector(tappedRateUs), for: .touchUpInside)
-        contentView.writeBtn.addTarget(self, action: #selector(pushInfo), for: .touchUpInside)
+        contentView.writeBtn.addTarget(self, action: #selector(tappedWriteUs), for: .touchUpInside)
         
         let achiOneTap = UITapGestureRecognizer(target: self, action: #selector(tappedAchiOne))
         contentView.achiOneView.addGestureRecognizer(achiOneTap)
@@ -188,16 +188,7 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
     }
     
     @objc func tappeUpdateName() {
-        if contentView.editBtn.backgroundImage(for: .normal) == UIImage(named: "btnYellow") {
-            view.endEditing(true)
-            isTextFieldTapped = false
-            contentView.editBtn.setBackgroundImage(UIImage(named: "btnYellow"), for: .normal)
-        } else {
-            contentView.profileTextField.becomeFirstResponder()
-            
-            contentView.editBtn.setBackgroundImage(UIImage(named: "btnYellow"), for: .normal)
-            isTextFieldTapped = true
-        }
+        contentView.profileTextField.becomeFirstResponder()
     }
     
     private func checkFotoLoad() {

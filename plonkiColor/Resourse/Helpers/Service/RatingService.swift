@@ -68,4 +68,41 @@ class RatingService {
         }
         task.resume()
     }
+    
+    func updateUser(userId: Int, name: String) {
+            let url = URL(string: "https://ball-color.br-soft.online/api/user")!
+            var request = URLRequest(url: url)
+            request.httpMethod = "PATCH"
+        guard let token = AuthTokenService.shared.token else { return }
+        request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            request.setValue("application/json", forHTTPHeaderField: "Accept")
+            request.setValue("multipart/form-data", forHTTPHeaderField: "Content-Type")
+            
+            let parameters: [String: Any] = [
+                "user_id": userId,
+                "name": name,
+            ]
+            
+            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters)
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    print("Error: \(error)")
+                    return
+                }
+                
+                guard let data = data else { return }
+                
+                do {
+                    if let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                        print("Response: \(json)")
+                    }
+                } catch {
+                    print("Error parsing response: \(error)")
+                }
+            }
+            
+            task.resume()
+        }
 }
