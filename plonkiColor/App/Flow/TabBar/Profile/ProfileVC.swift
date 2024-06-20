@@ -30,6 +30,20 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
         tappedButtons()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkAchi()
+    }
+    
+    
+    private func checkAchi() {
+        contentView.achiOneImg.alpha = Memory.shared.colorNovice ? 1.0 : 0.5
+        contentView.achiTwoImg.alpha = Memory.shared.patternExplorer ? 1.0 : 0.5
+        contentView.achiThreeImg.alpha = Memory.shared.colorApprentice ? 1.0 : 0.5
+        contentView.achiFourImg.alpha = Memory.shared.harmoniousMastery ? 1.0 : 0.5
+
+    }
+    
     private func tappedButtons() {
         contentView.chosePhotoBtn.addTarget(self, action: #selector(goTakePhoto), for: .touchUpInside)
         contentView.editBtn.addTarget(self, action: #selector(tappeUpdateName), for: .touchUpInside)
@@ -92,11 +106,6 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
                 viewConteiner.layer.shadowOffset = CGSize(width: 0, height: 0)
                 viewConteiner.layer.shadowRadius = 20
                 fullScreenView!.addSubview(viewConteiner)
-//                
-//            let bgImage = UIImageView(image: .bgProfileModal)
-//                bgImage.contentMode = .scaleToFill
-//                bgImage.clipsToBounds = true
-//                viewConteiner.addSubview(bgImage)
                 
             let imageBonusView = UIImageView(image: image)
                 imageBonusView.contentMode = .scaleAspectFit
@@ -134,10 +143,6 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
                 make.height.equalTo(460.autoSize)
                 make.width.equalTo(353.autoSize)
             }
-//    
-//            bgImage.snp.makeConstraints { make in
-//                make.edges.equalToSuperview()
-//                }
                 
             imageBonusView.snp.makeConstraints { make in
                 make.centerX.equalTo(viewConteiner)

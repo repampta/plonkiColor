@@ -77,6 +77,7 @@ class Memory {
         }
         set {
             defaults.set(newValue, forKey: "patternExplorer")
+            checkHarmoniousMastery()
         }
     }
     
@@ -86,6 +87,7 @@ class Memory {
         }
         set {
             defaults.set(newValue, forKey: "colorApprentice")
+            checkHarmoniousMastery()
         }
     }
     
@@ -95,6 +97,7 @@ class Memory {
         }
         set {
             defaults.set(newValue, forKey: "harmoniousMastery")
+            checkHarmoniousMastery()
         }
     }
     
@@ -106,6 +109,12 @@ class Memory {
             defaults.set(newValue, forKey: "firstLaunchDate")
         }
     }
+    
+    private func checkHarmoniousMastery() {
+          if colorNovice && patternExplorer && colorApprentice {
+              harmoniousMastery = true
+          }
+      }
 }
 
 extension UserDefaults {
