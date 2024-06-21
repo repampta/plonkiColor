@@ -83,10 +83,6 @@ extension RatingVC: UITableViewDataSource, UITableViewDelegate {
     func setupCell(ratingCell: RatingCell, number: Int, user: User) {
         if user.id == Memory.shared.userID {
             ratingCell.leadView.backgroundColor = .cGradOne
-//            ratingCell.leadView.layer.shadowColor = UIColor.cyan.withAlphaComponent(0.6).cgColor
-//            ratingCell.leadView.layer.shadowOpacity = 1
-//            ratingCell.leadView.layer.shadowOffset = CGSize(width: 2, height: 2)
-//            ratingCell.leadView.layer.shadowRadius = 10
         }else{
             ratingCell.leadView.backgroundColor = .cGradTwo
 

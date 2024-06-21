@@ -17,8 +17,6 @@
 		1865169C2C1330C500A8A076 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169B2C1330C500A8A076 /* User.swift */; };
 		1865169E2C1339D600A8A076 /* CustomRatingOneCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */; };
 		186516A02C134A0500A8A076 /* CircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1865169F2C134A0500A8A076 /* CircleView.swift */; };
-		187141F82C187C4000C08D27 /* gameBoards.json in Resources */ = {isa = PBXBuildFile; fileRef = 187141F72C187C4000C08D27 /* gameBoards.json */; };
-		187141FA2C1880CB00C08D27 /* winGame.json in Resources */ = {isa = PBXBuildFile; fileRef = 187141F92C1880CB00C08D27 /* winGame.json */; };
 		18A8ADBD2C170CF00023D16D /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADBC2C170CF00023D16D /* HomeCell.swift */; };
 		18A8ADBF2C1725A20023D16D /* ChapterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADBE2C1725A20023D16D /* ChapterCell.swift */; };
 		18A8ADC22C1736160023D16D /* GameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A8ADC12C1736160023D16D /* GameVC.swift */; };
@@ -86,8 +84,6 @@
 		1865169B2C1330C500A8A076 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1865169D2C1339D600A8A076 /* CustomRatingOneCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRatingOneCell.swift; sourceTree = "<group>"; };
 		1865169F2C134A0500A8A076 /* CircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleView.swift; sourceTree = "<group>"; };
-		187141F72C187C4000C08D27 /* gameBoards.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = gameBoards.json; sourceTree = "<group>"; };
-		187141F92C1880CB00C08D27 /* winGame.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = winGame.json; sourceTree = "<group>"; };
 		18A8ADBC2C170CF00023D16D /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		18A8ADBE2C1725A20023D16D /* ChapterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterCell.swift; sourceTree = "<group>"; };
 		18A8ADC12C1736160023D16D /* GameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVC.swift; sourceTree = "<group>"; };
@@ -180,8 +176,6 @@
 				18A8ADC12C1736160023D16D /* GameVC.swift */,
 				18A8ADC32C17361A0023D16D /* GameScene.swift */,
 				18A8ADC52C17369B0023D16D /* CustomButton.swift */,
-				187141F72C187C4000C08D27 /* gameBoards.json */,
-				187141F92C1880CB00C08D27 /* winGame.json */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -480,12 +474,10 @@
 			files = (
 				A5D217AF2C1C4A4800B247AC /* KleeOne-SemiBold.ttf in Resources */,
 				18DF18A12C11E23D00D6019B /* Assets.xcassets in Resources */,
-				187141F82C187C4000C08D27 /* gameBoards.json in Resources */,
 				A5D217B12C1C4A4F00B247AC /* KleeOne-Regular.ttf in Resources */,
 				A5D217B32C1C521700B247AC /* Chivo-Regular.ttf in Resources */,
 				18DF18A42C11E23D00D6019B /* Base in Resources */,
 				183C3B1C2C21810800A4CFDB /* Chivo-Black.ttf in Resources */,
-				187141FA2C1880CB00C08D27 /* winGame.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

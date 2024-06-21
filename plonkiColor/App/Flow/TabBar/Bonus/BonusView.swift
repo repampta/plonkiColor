@@ -65,12 +65,6 @@ class BonusView: UIView {
         return image
     }()
     
-    private(set) lazy var selectImageView: UIImageView = {
-        let image = UIImageView()
-        image.image = .pointerImg
-        return image
-    }()
-    
     private(set) var btnGetBonus: UIButton = {
         let btn = UIButton()
         btn.configureButton(withTitle: "get bonus".uppercased(), font: .customFont(font: .kleeOne, style: .semiBold, size: 24), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped)
@@ -134,7 +128,6 @@ class BonusView: UIView {
         bonusView.addSubview(subTitleLabel)
         bonusView.addSubview(btnGetBonus)
         bonusView.addSubview(circleContainer)
-//        bonusView.addSubview(selectImageView)
         bonusView.addSubview(centerBonusImg)
         circleContainer.addSubview(bonzaImg)
 
@@ -206,6 +199,8 @@ class BonusView: UIView {
         timerImg.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide.snp.top).offset(24)
+            make.width.equalTo(300.autoSize)
+            make.height.equalTo(478.autoSize)
         }
         
         timerTitleLabel.snp.makeConstraints { make in

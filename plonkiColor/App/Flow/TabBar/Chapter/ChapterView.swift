@@ -9,7 +9,7 @@ class ChapterView: UIView {
     
     private (set) var bgImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .bgStart
+        imageView.image = .bgClassic
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

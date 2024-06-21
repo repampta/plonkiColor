@@ -400,7 +400,7 @@ class ProfileView: UIView, UITextFieldDelegate {
         subProfileView.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
-            make.height.equalTo(176.autoSize)
+            make.height.equalTo(176)
         }
         
         chosePhotoBtn.snp.makeConstraints { make in
@@ -440,7 +440,7 @@ class ProfileView: UIView, UITextFieldDelegate {
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(subProfileView.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-56)
         }
         
         contentStackView.snp.makeConstraints { make in
@@ -453,7 +453,7 @@ class ProfileView: UIView, UITextFieldDelegate {
         }
         
         analyticsView.snp.makeConstraints { make in
-            make.height.equalTo(150.autoSize)
+            make.height.equalTo(150)
             make.left.right.equalToSuperview()
         }
         
@@ -504,15 +504,15 @@ class ProfileView: UIView, UITextFieldDelegate {
         }
         
         achievementsView.snp.makeConstraints { make in
-            make.height.equalTo(250.autoSize)
+            make.height.equalTo(250)
             make.left.right.equalToSuperview()
         }
         
         achiOneView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.right.equalTo(achievementsView.snp.centerX).offset(-20)
-            make.height.equalTo(106.autoSize)
-            make.width.equalTo(100.autoSize)
+            make.height.equalTo(106)
+            make.width.equalTo(100)
         }
         
         achiOneImg.snp.makeConstraints { make in
@@ -528,8 +528,8 @@ class ProfileView: UIView, UITextFieldDelegate {
         achiTwoView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(12)
             make.left.equalTo(achievementsView.snp.centerX).offset(20)
-            make.height.equalTo(106.autoSize)
-            make.width.equalTo(100.autoSize)
+            make.height.equalTo(106)
+            make.width.equalTo(100)
         }
         
         achiTwoImg.snp.makeConstraints { make in
@@ -545,8 +545,8 @@ class ProfileView: UIView, UITextFieldDelegate {
         achiThreeView.snp.makeConstraints { make in
             make.top.equalTo(achiOneView.snp.bottom).offset(12)
             make.right.equalTo(achievementsView.snp.centerX).offset(-20)
-            make.height.equalTo(106.autoSize)
-            make.width.equalTo(100.autoSize)
+            make.height.equalTo(106)
+            make.width.equalTo(100)
         }
         
         achiThreeImg.snp.makeConstraints { make in
@@ -562,8 +562,8 @@ class ProfileView: UIView, UITextFieldDelegate {
         achiFourView.snp.makeConstraints { make in
             make.top.equalTo(achiTwoView.snp.bottom).offset(12)
             make.left.equalTo(achievementsView.snp.centerX).offset(20)
-            make.height.equalTo(106.autoSize)
-            make.width.equalTo(100.autoSize)
+            make.height.equalTo(106)
+            make.width.equalTo(100)
         }
         
         achiFourImg.snp.makeConstraints { make in

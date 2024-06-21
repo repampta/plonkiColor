@@ -141,15 +141,15 @@ class CustomRatingCell: UITableViewCell {
         secondContainer.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.right.equalTo(firstContainer.snp.left).offset(-20)
-            make.width.equalTo(94)
-            make.height.equalTo(154)
+            make.width.equalTo(94.autoSize)
+            make.height.equalTo(154.autoSize)
         }
         
         thirdContainer.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.left.equalTo(firstContainer.snp.right).offset(20)
-            make.width.equalTo(94)
-            make.height.equalTo(154)
+            make.width.equalTo(94.autoSize)
+            make.height.equalTo(154.autoSize)
         }
         
         setupContainer(firstContainer, imageView: customImageView1, imageScore: customImageScore1, firstLabel: firstLabel1, secondLabel: secondLabel1)

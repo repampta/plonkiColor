@@ -44,8 +44,8 @@ class HomeCell: UICollectionViewCell {
         imageViewLevels.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(-40)
             make.centerX.equalToSuperview()
-            make.height.equalTo(256)
-            make.width.equalTo(192)
+            make.height.equalTo(256.autoSize)
+            make.width.equalTo(192.autoSize)
         }
         
         button.snp.makeConstraints { make in

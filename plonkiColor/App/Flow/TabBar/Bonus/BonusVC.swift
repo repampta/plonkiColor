@@ -174,6 +174,8 @@ class BonusVC: UIViewController {
         imageView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.centerY.equalToSuperview()
+                make.width.equalTo(477.autoSize)
+                make.height.equalTo(694.autoSize)
             }
         
         titleLabel.snp.makeConstraints { make in

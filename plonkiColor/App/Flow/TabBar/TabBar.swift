@@ -30,7 +30,7 @@ final class TabBar: UITabBarController {
         $0.distribution = .equalSpacing
         $0.alignment = .center
         $0.backgroundColor = .cDarkPurple
-        $0.frame = CGRect(x: 0, y: view.frame.height - 90, width: view.frame.width, height: 90)
+        $0.frame = CGRect(x: 0, y: view.frame.height - 90.autoSize, width: view.frame.width, height: 90.autoSize)
         $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         $0.layer.shadowOpacity = 1
         $0.layer.shadowRadius = 12

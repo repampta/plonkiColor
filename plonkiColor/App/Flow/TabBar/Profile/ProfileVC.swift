@@ -69,22 +69,18 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
     }
     
     @objc private func tappedAchiOne() {
-          print("One")
         presentModalView(title: "Color Novice", subtitle: "Unravel the first gradient", image: .imgViewAchiOne)
       }
     
     @objc private func tappedAchiTwo() {
-          print("Two")
         presentModalView(title: "Pattern Explorer", subtitle: "Complete the first chapter", image: .imgViewAchiTwo)
       }
     
     @objc private func tappedAchiThree() {
-          print("Three")
         presentModalView(title: "Color Apprentice", subtitle: "Solve the first 5 levels\nof the first chapter", image: .imgViewAchiTwo)
       }
     
     @objc private func tappedAchiFour() {
-          print("Four")
         presentModalView(title: "Harmonious Mastery", subtitle: "Get all the achievements in the game", image: .imgViewAchiTwo)
 
       }
@@ -117,7 +113,7 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
     
             let titleLabel = UILabel()
                 titleLabel.text = title
-                titleLabel.font = .customFont(font: .kleeOne, style: .semiBold, size: 36)
+                titleLabel.font = .customFont(font: .kleeOne, style: .semiBold, size: 32)
                 titleLabel.textColor = .cLight
                 titleLabel.numberOfLines = 0
                 titleLabel.textAlignment = .center
@@ -139,30 +135,31 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
     
             viewConteiner.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.centerY.equalToSuperview().offset(40.autoSize)
-                make.height.equalTo(460.autoSize)
-                make.width.equalTo(353.autoSize)
+                make.centerY.equalToSuperview()
+                make.height.equalTo(460)
+                make.width.equalTo(353)
             }
                 
             imageBonusView.snp.makeConstraints { make in
                 make.centerX.equalTo(viewConteiner)
                 make.top.equalToSuperview().offset(40)
+                make.size.equalTo(200)
             }
                 
             titleLabel.snp.makeConstraints { make in
-                make.centerX.equalTo(imageBonusView)
+                make.left.right.equalToSuperview().inset(20)
                 make.top.equalTo(imageBonusView.snp.bottom).offset(24)
             }
                 
             subtitleLabelView.snp.makeConstraints { make in
-                make.centerX.equalTo(imageBonusView)
+                make.centerX.equalToSuperview()
                 make.top.equalTo(titleLabel.snp.bottom).offset(20)
             }
 
             backButton.snp.makeConstraints { make in
                 make.top.equalTo(subtitleLabelView.snp.bottom).offset(20)
                 make.centerX.equalTo(viewConteiner)
-                make.height.equalTo(48.autoSize)
+                make.height.equalTo(48)
                 make.width.equalTo(280)
                 }
                 

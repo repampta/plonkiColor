@@ -84,18 +84,18 @@ class HomeView: UIView {
         }
         
         titleLabel.snp.makeConstraints { make in
-            make.top.equalTo(contScore.snp.bottom).offset(24)
+            make.top.equalTo(contScore.snp.bottom).offset(24.autoSize)
             make.centerX.equalToSuperview()
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(40)
-            make.height.equalTo(400)
+            make.top.equalTo(titleLabel.snp.bottom).offset(40.autoSize)
+            make.height.equalTo(400.autoSize)
             make.left.right.equalToSuperview()
         }
         
         pageNumberStackView.snp.makeConstraints { make in
-            make.top.equalTo(collectionView.snp.bottom).offset(10)
+            make.top.equalTo(collectionView.snp.bottom).offset(10.autoSize)
             make.centerX.equalToSuperview()
         }
     }
