@@ -82,12 +82,24 @@ struct LevelView: View {
     
     private var navBar: some View {
         HStack {
-            Image(.gameBack)
-                .onTapGesture { dismiss() }
+            Button {
+                dismiss()
+            } label: {
+                Image(.gameBack)
+            }
+            .smallButtonStyle()
+            
             Spacer()
-            Image(.gameRestart)
-                .onTapGesture { restartGame() }
+            
+            Button {
+                restartGame()
+            } label: {
+                Image(.gameRestart)
+            }
+            .smallButtonStyle()
+
             Spacer()
+            
             Image(.gameRules).opacity(0)
         }
         .shadow(color: .black.opacity(0.6), radius: 4, y: 2)
