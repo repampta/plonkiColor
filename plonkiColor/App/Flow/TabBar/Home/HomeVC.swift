@@ -18,7 +18,7 @@ class HomeVC: UIViewController {
     private var levelColors: [UIColor] = [.red, .blue, .green, .orange, .yellow, .systemPink, .brown, .cyan, .cGradOne, .cGradTwo]
     private var chapterImagesOne: [UIImage] = [.imgLevelOne, .imgLevelTwo, .imgLevelThree, .imgLevelFour, .imgLevelFive, .imgLevelSix, .imgLevelSeven, .imgLevelEight, .imgLevelNine, .imgLevelTen]
     private var chapterImagesTwo: [UIImage] = [.imgGradLevelOne, .imgGradLevelTwo, .imgGradLevelThree, .imgGradLevelFour, .imgGradLevelFive, .imgGradLevelSix, .imgGradLevelSeven, .imgGradLevelEight, .imgGradLevelNine, .imgGradLevelTen]
-
+    
     private var currentChapter = UserDefaults.currentChapter
     private var currentLevelIndex = Chapter.currentLevel.id
     private var levels: [Level] = UserDefaults.currentChapter.levels
@@ -47,7 +47,7 @@ class HomeVC: UIViewController {
             self.levels = UserDefaults.currentChapter.levels
             self.currentLevelIndex = Chapter.currentLevel.id
             contentView.collectionView.reloadData()
-            contentView.scoreLabel.text = "(\(Memory.shared.scoreCoins))"
+            contentView.scoreLabel.text = "\(Memory.shared.scoreCoins)"
         }
         
         /// Added the scroll to the index of the current level
@@ -57,16 +57,22 @@ class HomeVC: UIViewController {
         updateCellButton()
     }
     
-    
     private func updateCellButton() {
         DispatchQueue.main.async {
-                 for cell in self.contentView.collectionView.visibleCells {
-                     if let homeCell = cell as? HomeCell {
-                         homeCell.button.setBackgroundImage(UIImage(named: "btnPlay"), for: .normal)
-                     }
-                 }
-             }
+            for cell in self.contentView.collectionView.visibleCells {
+                if let homeCell = cell as? HomeCell {
+                    let indexPath = self.contentView.collectionView.indexPath(for: homeCell)!
+                    let level = self.levels[indexPath.item]
+                    if level.isOpen {
+                        homeCell.button.setBackgroundImage(UIImage(named: "btnPlay"), for: .normal)
+                    } else {
+                        homeCell.button.setBackgroundImage(UIImage(named: "btnPlayLocked"), for: .normal)
+                    }
+                }
+            }
+        }
     }
+    
     private func updateLabel() {
         if currentChapter == .colorHarmony {
             contentView.titleLabel.text = "Chapter\n\"Color Harmony\""
@@ -79,7 +85,7 @@ class HomeVC: UIViewController {
         contentView.collectionView.dataSource = self
         contentView.collectionView.delegate = self
         contentView.collectionView.register(HomeCell.self, forCellWithReuseIdentifier: HomeCell.reuseId)
-
+        
     }
     
     private func scrollCollectionToTheCurrentLevel() {
@@ -93,25 +99,25 @@ class HomeVC: UIViewController {
     }
     
     func setColors(colors: [UIColor]) {
-           self.levelColors = colors
+        self.levelColors = colors
         contentView.collectionView.reloadData()
         contentView.updatePageNumbers(count: levelColors.count, currentPage: 1)
-       }
+    }
 }
 
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return levels.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseId, for: indexPath) as! HomeCell
         
         if currentChapter == .colorHarmony {
-                 cell.imageViewLevels.image = chapterImagesOne[indexPath.item]
-             } else if currentChapter == .gradientChallenges {
-                 cell.imageViewLevels.image = chapterImagesTwo[indexPath.item]
-             }
+            cell.imageViewLevels.image = chapterImagesOne[indexPath.item]
+        } else if currentChapter == .gradientChallenges {
+            cell.imageViewLevels.image = chapterImagesTwo[indexPath.item]
+        }
         cell.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
         cell.button.tag = indexPath.item
         
@@ -133,24 +139,23 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-          guard let visibleIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
-          let pageIndex = visibleIndexPath.item + 1
-          
-          if levels.indices.contains(visibleIndexPath.item) {
-              let level = levels[visibleIndexPath.item]
-              if let visibleCell = collectionView.cellForItem(at: visibleIndexPath) as? HomeCell {
-                  if level.isOpen {
-                      visibleCell.button.setBackgroundImage(UIImage(named: "btnPlay"), for: .normal)
-                      visibleCell.button.isEnabled = true
-                  } else {
-                      visibleCell.button.setBackgroundImage(UIImage(named: "btnPlayLocked"), for: .normal)
-                      visibleCell.button.isEnabled = false
-                  }
-              }
-          }
-          contentView.updatePageNumber(currentPage: pageIndex)
-      }
-
+        guard let visibleIndexPath = collectionView.indexPathsForVisibleItems.first else { return }
+        let pageIndex = visibleIndexPath.item + 1
+        
+        if levels.indices.contains(visibleIndexPath.item) {
+            let level = levels[visibleIndexPath.item]
+            if let visibleCell = collectionView.cellForItem(at: visibleIndexPath) as? HomeCell {
+                if level.isOpen {
+                    visibleCell.button.setBackgroundImage(UIImage(named: "btnPlay"), for: .normal)
+                    visibleCell.button.isEnabled = true
+                } else {
+                    visibleCell.button.setBackgroundImage(UIImage(named: "btnPlayLocked"), for: .normal)
+                    visibleCell.button.isEnabled = false
+                }
+            }
+        }
+        contentView.updatePageNumber(currentPage: pageIndex)
+    }
 }
 
 

@@ -17,6 +17,7 @@ class HomeCell: UICollectionViewCell {
     
     let button: UIButton = {
         let button = UIButton()
+        button.setBackgroundImage(.btnPlay, for: .normal)
         button.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 8

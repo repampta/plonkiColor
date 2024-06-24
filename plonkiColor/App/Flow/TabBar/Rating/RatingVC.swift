@@ -28,7 +28,7 @@ class RatingVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadUsers()
-        contentView.scoreLabel.text = "\(Memory.shared.scoreCoins))"
+        contentView.scoreLabel.text = "\(Memory.shared.scoreCoins)"
     }
     
     func sorterScoreUsers() {
