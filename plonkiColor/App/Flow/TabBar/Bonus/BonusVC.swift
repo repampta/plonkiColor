@@ -167,8 +167,9 @@ class BonusVC: UIViewController {
         imageView.addSubview(countLabel)
         
         let backButton = UIButton()
-            backButton.configureButton(withTitle: "Thanks".uppercased(), font: .customFont(font: .kleeOne, style: .semiBold, size: 24), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped, kern: 4.8)
-        backButton.addTarget(self, action: #selector(tappedCloseBonus), for: .touchUpInside)
+            backButton.setImage(.btnThanks, for: .normal)
+            backButton.setImage(.btnThanksTapped, for: .highlighted)
+            backButton.addTarget(self, action: #selector(tappedCloseBonus), for: .touchUpInside)
             fullScreenView!.addSubview(backButton)
 
         imageView.snp.makeConstraints { make in

@@ -1,0 +1,20 @@
+{
+  "images" : [
+    {
+      "filename" : "Property 1=on click (6).pdf",
+      "idiom" : "universal"
+    },
+    {
+      "filename" : "Property 1=on click (7).pdf",
+      "idiom" : "universal",
+      "locale" : "en"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
+  }
+}

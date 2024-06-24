@@ -29,7 +29,17 @@ class ChapterVC: UIViewController {
         update()
     }
     private func update() {
-        
+        if let selectedIndex = selectedIndex {
+                let cell = contentView.chapterTableView.cellForRow(at: selectedIndex) as? ChapterCell
+                cell?.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
+                cell?.chapterImage.layer.borderWidth = 8
+                cell?.chapterImage.layer.cornerRadius = 20
+                cell?.chapterImage.layer.masksToBounds = false
+                cell?.chapterImage.layer.shadowColor = UIColor.purple.withAlphaComponent(0.8).cgColor
+                cell?.chapterImage.layer.shadowOpacity = 1
+                cell?.chapterImage.layer.shadowRadius = 12
+                cell?.chapterImage.layer.shadowOffset = CGSize(width: 0, height: 0)
+            }
     }
     private func configureTableView() {
         contentView.chapterTableView.dataSource = self
@@ -50,23 +60,19 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         cell.chapterImage.image = chapter[indexPath.row].imagesChapters
         
         cell.contentView.alpha = indexPath.row <= 1 ? 1.0 : 0.6
-
         cell.imgCompleted.isHidden = !chapter[indexPath.row].isFinished
         
         if indexPath == selectedIndex {
             cell.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
             cell.chapterImage.layer.borderWidth = 8
             cell.chapterImage.layer.cornerRadius = 20
-            cell.layer.masksToBounds = false
-            cell.layer.shadowColor = UIColor.cDarkPurple.withAlphaComponent(0.8).cgColor
-            cell.layer.shadowOpacity = 1
-            cell.layer.shadowRadius = 20
-            cell.layer.shadowOffset = CGSize(width: 0, height: 0)
-
+            cell.chapterImage.layer.masksToBounds = false
+            cell.chapterImage.layer.shadowColor = UIColor.purple.withAlphaComponent(0.8).cgColor
+            cell.chapterImage.layer.shadowOpacity = 1
+            cell.chapterImage.layer.shadowRadius = 12
+            cell.chapterImage.layer.shadowOffset = CGSize(width: 0, height: 0)
         } else {
-            cell.chapterImage.layer.borderColor = UIColor.clear.cgColor
-            cell.chapterImage.layer.borderWidth = 0
-            cell.chapterImage.layer.cornerRadius = 20
+            resetCellAppearance(cell)
         }
         return cell
     }
@@ -87,19 +93,18 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         
         if let previousIndex = selectedIndex {
             let previousCell = tableView.cellForRow(at: previousIndex) as? ChapterCell
-            previousCell?.chapterImage.layer.borderColor = UIColor.clear.cgColor
-            previousCell?.chapterImage.layer.borderWidth = 0
+            resetCellAppearance(previousCell)
         }
         
         let cell = tableView.cellForRow(at: indexPath) as? ChapterCell
         cell?.chapterImage.layer.borderColor = UIColor.cGradOne.cgColor
         cell?.chapterImage.layer.borderWidth = 8
         cell?.chapterImage.layer.cornerRadius = 20
-        cell?.layer.masksToBounds = false
-        cell?.layer.shadowColor = UIColor.cDarkPurple.withAlphaComponent(0.8).cgColor
-        cell?.layer.shadowOpacity = 1
-        cell?.layer.shadowRadius = 20
-        cell?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        cell?.chapterImage.layer.masksToBounds = false
+        cell?.chapterImage.layer.shadowColor = UIColor.purple.withAlphaComponent(0.8).cgColor
+        cell?.chapterImage.layer.shadowOpacity = 1
+        cell?.chapterImage.layer.shadowRadius = 12
+        cell?.chapterImage.layer.shadowOffset = CGSize(width: 0, height: 0)
         
         selectedIndex = indexPath
 
@@ -116,4 +121,22 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
             tabBar.selectTab(at: 2)
         }
     }
+
+    private func resetCellAppearance(_ cell: ChapterCell?) {
+        cell?.chapterImage.layer.borderColor = UIColor.clear.cgColor
+        cell?.chapterImage.layer.borderWidth = 0
+        cell?.chapterImage.layer.cornerRadius = 20
+        cell?.chapterImage.layer.shadowColor = UIColor.clear.cgColor
+        cell?.chapterImage.layer.shadowOpacity = 0
+        cell?.chapterImage.layer.shadowRadius = 0
+        cell?.chapterImage.layer.shadowOffset = CGSize.zero
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return UIView()
+    }
+
 }

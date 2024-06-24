@@ -700,8 +700,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ball Color";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app uses photo storage access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs a camera so that the user can take profile pictures";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires a camera so that the user can take a profile photo from the library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -734,8 +734,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = plonkiColor/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Ball Color";
-				INFOPLIST_KEY_NSCameraUsageDescription = "This app uses camera to capture photos and videos";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app uses photo storage access";
+				INFOPLIST_KEY_NSCameraUsageDescription = "This app needs a camera so that the user can take profile pictures";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "This app requires a camera so that the user can take a profile photo from the library";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";

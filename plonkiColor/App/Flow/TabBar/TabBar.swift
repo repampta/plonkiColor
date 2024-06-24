@@ -30,7 +30,7 @@ final class TabBar: UITabBarController {
         $0.distribution = .equalSpacing
         $0.alignment = .center
         $0.backgroundColor = .cDarkPurple
-        $0.frame = CGRect(x: 0, y: view.frame.height - 90.autoSize, width: view.frame.width, height: 90.autoSize)
+        $0.frame = CGRect(x: 0, y: view.frame.height - 78.autoSize, width: view.frame.width, height: 78.autoSize)
         $0.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         $0.layer.shadowOpacity = 1
         $0.layer.shadowRadius = 12
@@ -86,6 +86,7 @@ final class TabBar: UITabBarController {
             if index == selectedIndex {
                 let selectedImage = UIImage(named: selectedIcon)?.withRenderingMode(.alwaysOriginal)
                 button.setImage(selectedImage, for: .normal)
+                
             } else {
                 let image = UIImage(named: icon)?.withRenderingMode(.alwaysOriginal)
                 button.setImage(image, for: .normal)

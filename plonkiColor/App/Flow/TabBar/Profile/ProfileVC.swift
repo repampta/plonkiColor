@@ -129,7 +129,8 @@ class ProfileVC: UIViewController, MFMailComposeViewControllerDelegate {
     
                 
             let backButton = UIButton()
-                backButton.configureButton(withTitle: "OK", font: .customFont(font: .kleeOne, style: .semiBold, size: 16), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped)
+                backButton.setImage(.btnOK, for: .normal)
+                backButton.setImage(.btnOKTapped, for: .highlighted)
                 backButton.addTarget(self, action: #selector(tappedCloseBuy), for: .touchUpInside)
                 fullScreenView!.addSubview(backButton)
     

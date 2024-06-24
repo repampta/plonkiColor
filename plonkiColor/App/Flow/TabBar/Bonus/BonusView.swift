@@ -67,7 +67,8 @@ class BonusView: UIView {
     
     private(set) var btnGetBonus: UIButton = {
         let btn = UIButton()
-        btn.configureButton(withTitle: "get bonus".uppercased(), font: .customFont(font: .kleeOne, style: .semiBold, size: 24), titleColor: .cDarkPurple, normalImage: .btnActivity, highlightedImage: .btnActivityTapped)
+        btn.setImage(.btnGetBonus, for: .normal)
+        btn.setImage(.btnGetBonusLocked, for: .disabled)
         return btn
     }()
     

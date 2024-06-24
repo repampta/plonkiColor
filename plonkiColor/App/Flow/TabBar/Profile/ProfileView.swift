@@ -133,7 +133,7 @@ class ProfileView: UIView, UITextFieldDelegate {
     
     private(set) lazy var analyticsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cBlue.withAlphaComponent(0.4)
+        view.backgroundColor = .cBlue.withAlphaComponent(0.2)
         return view
     }()
     
@@ -194,7 +194,7 @@ class ProfileView: UIView, UITextFieldDelegate {
     
     private(set) lazy var achievementsView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cBlue.withAlphaComponent(0.4)
+        view.backgroundColor = .cBlue.withAlphaComponent(0.2)
         return view
     }()
     
@@ -208,7 +208,7 @@ class ProfileView: UIView, UITextFieldDelegate {
     private(set) lazy var contentStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .vertical
-        stackView.spacing = 16
+        stackView.spacing = 12
         stackView.alignment = .center
         return stackView
     }()
@@ -453,24 +453,24 @@ class ProfileView: UIView, UITextFieldDelegate {
         }
         
         analyticsView.snp.makeConstraints { make in
-            make.height.equalTo(150)
+            make.height.equalTo(142)
             make.left.right.equalToSuperview()
         }
         
         imgContainerLevel.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-8)
             make.right.equalTo(analyticsView.snp.centerX).offset(-20)
             make.width.equalTo(140.autoSize)
             make.height.equalTo(27.autoSize)
         }
         
         imgLevel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalToSuperview().offset(10)
             make.centerX.equalTo(imgContainerLevel)
         }
         
         levelLabel.snp.makeConstraints { make in
-            make.top.equalTo(imgLevel.snp.bottom).offset(8)
+            make.top.equalTo(imgLevel.snp.bottom).offset(2)
             make.centerX.equalTo(imgContainerLevel)
         }
         
@@ -483,19 +483,19 @@ class ProfileView: UIView, UITextFieldDelegate {
         }
         
         imgContainerChapter.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-12)
+            make.bottom.equalToSuperview().offset(-8)
             make.left.equalTo(analyticsView.snp.centerX).offset(20)
             make.width.equalTo(140.autoSize)
             make.height.equalTo(27.autoSize)
         }
         
         imgChapter.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalToSuperview().offset(10)
             make.centerX.equalTo(imgContainerChapter)
         }
         
         chapterLabel.snp.makeConstraints { make in
-            make.top.equalTo(imgChapter.snp.bottom).offset(8)
+            make.top.equalTo(imgChapter.snp.bottom).offset(2)
             make.centerX.equalTo(imgContainerChapter)
         }
         

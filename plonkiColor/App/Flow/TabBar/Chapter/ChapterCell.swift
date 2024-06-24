@@ -41,7 +41,6 @@ class ChapterCell: UITableViewCell {
     
     private(set) lazy var conteiner: UIView = {
         let view = UIView()
-//        view.clipsToBounds = true
         return view
     }()
 
@@ -74,6 +73,7 @@ class ChapterCell: UITableViewCell {
             conteiner.snp.makeConstraints { make in
                 make.top.left.right.bottom.equalToSuperview()
                 make.bottom.equalToSuperview()
+                make.height.equalTo(160.autoSize)
             }
             
             chapterImage.snp.makeConstraints { make in

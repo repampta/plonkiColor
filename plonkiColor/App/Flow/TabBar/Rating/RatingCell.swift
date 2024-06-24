@@ -39,7 +39,7 @@ class RatingCell: UITableViewCell {
     
     private (set) var imgScore: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = .imgCoint
+        imageView.image = .imgCointScore
         return imageView
     }()
     

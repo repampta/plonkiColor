@@ -33,7 +33,7 @@ class ChapterView: UIView {
     
     
     private (set) var subTitleLabel: UILabel = {
-        let label = UILabel.createLabel(withText: "Of course, here's a list of 10 chapters for\nyour poinko-ball game:", font: .customFont(font: .chivo, style: .regular, size: 18), textColor: .cLight, lineHeightMultiple: 1)
+        let label = UILabel.createLabel(withText: "Please select a chapter", font: .customFont(font: .chivo, style: .regular, size: 18), textColor: .cLight, lineHeightMultiple: 1)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -92,7 +92,7 @@ class ChapterView: UIView {
         
         chapterTableView.snp.makeConstraints { make in
             make.top.equalTo(subTitleLabel.snp.bottom)
-            make.left.right.equalToSuperview().inset(8)
+            make.left.right.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-24)
         }
     }
