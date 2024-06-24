@@ -9,7 +9,7 @@ struct GameWinModalView: View {
             Image(.gameWinModal)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
             VStack {
-                Text("Congratulations")
+                Text("Congratulations!")
                     .font(.custom("KleeOne-SemiBold", size: 36))
                     .foregroundStyle(.cGradOne)
                 
@@ -17,6 +17,7 @@ struct GameWinModalView: View {
                 
                 VStack(spacing: 24) {
                     Text("You distributed all the colors correctly and earned 50 coins and 50 points")
+                        .font(.custom("Chivo-Regular", size: 18))
                         .multilineTextAlignment(.center)
                         .foregroundStyle(.light)
                     
@@ -35,7 +36,7 @@ struct GameWinModalView: View {
             }
             .padding(.top, 20)
             .padding(.bottom, 40)
-            .padding(.horizontal, 12)
+            .padding(.horizontal, 11)
             .frame(width: 353, height: 570, alignment: .top)
         }
     }
