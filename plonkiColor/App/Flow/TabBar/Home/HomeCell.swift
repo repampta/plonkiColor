@@ -11,13 +11,12 @@ class HomeCell: UICollectionViewCell {
 
     private(set) lazy var imageViewLevels: UIImageView = {
         let iv = UIImageView()
+        iv.contentMode = .scaleAspectFit
         return iv
     }()
     
     let button: UIButton = {
         let button = UIButton()
-//        button.setImage(.btnPlay, for: .normal)
-//        button.setImage(.btnPlayTapped, for: .highlighted)
         button.layer.shadowColor = UIColor.black.withAlphaComponent(0.6).cgColor
         button.layer.shadowOpacity = 1
         button.layer.shadowRadius = 8
