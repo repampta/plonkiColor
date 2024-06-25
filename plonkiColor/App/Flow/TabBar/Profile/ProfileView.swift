@@ -440,7 +440,7 @@ class ProfileView: UIView, UITextFieldDelegate {
         scrollView.snp.makeConstraints { make in
             make.top.equalTo(subProfileView.snp.bottom).offset(20)
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-56)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-40)
         }
         
         contentStackView.snp.makeConstraints { make in

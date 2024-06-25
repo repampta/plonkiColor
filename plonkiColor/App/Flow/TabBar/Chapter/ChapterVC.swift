@@ -59,7 +59,7 @@ extension ChapterVC: UITableViewDataSource, UITableViewDelegate {
         cell.tittleLabel.text = chapter[indexPath.row].titleChapter
         cell.chapterImage.image = chapter[indexPath.row].imagesChapters
         
-        cell.contentView.alpha = indexPath.row <= 1 ? 1.0 : 0.6
+        cell.contentView.alpha = indexPath.row <= 1 ? 1.0 : 0.2
         cell.imgCompleted.isHidden = !chapter[indexPath.row].isFinished
         
         if indexPath == selectedIndex {
