@@ -22,13 +22,17 @@ struct GameWinModalView: View {
                         .foregroundStyle(.light)
                     
                     HStack(spacing: 16) {
-                        Button("GO TO HOME") {
+                        Button {
                             goToHome()
+                        } label: {
+                            Text("GO TO HOME")
                         }
                         .buttonStyle(SecondaryButtonStyle(height: 48))
                         
-                        Button("NEXT LEVEL") {
+                        Button {
                             nextLevel()
+                        } label: {
+                            Text("NEXT LEVEL")
                         }
                         .buttonStyle(SecondaryButtonStyle(height: 48, color: .cGradOne))
                     }

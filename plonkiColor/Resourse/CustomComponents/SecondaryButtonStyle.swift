@@ -21,6 +21,7 @@ struct SecondaryButtonStyle: ButtonStyle {
                 )
                 .shadow(color: .black.opacity(0.6), radius: 8, y: 8)
             configuration.label
+                .offset(y: -2)
         }
         .font(.custom("KleeOne-SemiBold", size: 16))
         .frame(maxWidth: width)
